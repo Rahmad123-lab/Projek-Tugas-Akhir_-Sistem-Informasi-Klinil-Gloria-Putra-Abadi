@@ -49,7 +49,7 @@
                 <td>{{ $pasien->alamat_pasien }}</td>
                 <td>{{ $pasien->tgl_datang }}</td>
                 <td>{{ $pasien->keluhan_pasien }}</td>
-                <td>{{ $pasien->dokter->nama_dokter }}</td>
+                <td>{{ $pasien->nama_dokter }}</td>
                 <td>{{ $pasien->nama_obat }}</td>
               </tr>
             </tbody>

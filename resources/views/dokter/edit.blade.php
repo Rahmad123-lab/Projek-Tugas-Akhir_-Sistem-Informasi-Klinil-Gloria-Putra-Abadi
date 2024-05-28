@@ -49,24 +49,24 @@
         <h6 class="m-0 font-weight-bold text-primary">Formulir Edit Pasien</h6>
       </div>
       <div class="card-body">
-        <form method="POST" action="{{ route('pasien.update', $pasien->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('pasien.update', $model->id) }}" enctype="multipart/form-data">
           @method('PUT')
           @csrf
           <div class="form-group">
             <label for="nama_pasien">Nama Pasien</label>
             <input type="text" class="form-control" id="nama_pasien" name="nama_pasien" placeholder="Nama Pasien"
-              value="{{ $pasien->nama_pasien }}">
+              value="{{ $model->nama_pasien }}">
           </div>
           <div class="form-group">
             <label for="alamat_pasien">Alamat Pasien</label>
             <input type="text" class="form-control" id="alamat_pasien" name="alamat_pasien" placeholder="Alamat Pasien"
-              value="{{ $pasien->alamat_pasien }}">
+              value="{{ $model->alamat_pasien }}">
           </div>
           <div class="form-group">
             <label for="dokter_id">Nama Dokter</label>
             <select class="form-control" id="dokter_id" name="dokter_id">
               @foreach ($dokters as $dokter)
-              <option value="{{ $dokter->id }}" {{ $pasien->dokter_id == $dokter->id ? 'Selected' : '' }}>
+              <option value="{{ $dokter->id }}" {{ $model->dokter_id == $dokter->id ? 'Selected' : '' }}>
                 {{ $dokter->nama_dokter }}</option>
               @endforeach
             </select>
@@ -74,11 +74,11 @@
           <div class="form-group">
             <label for="keluhan_pasien">Keluhan</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-              name="keluhan_pasien">{{ $pasien->keluhan_pasien }}</textarea>
+              name="keluhan_pasien">{{ $model->keluhan_pasien }}</textarea>
           </div>
           <div class="form-group">
             <label for="obat_id">Obat</label>
-            <select class="form-control" id="dokter_id" name="obat_id">
+            <select class="form-control" id="obat_id" name="obat_id">
               @foreach ($obats as $obat)
               <option value="{{ $obat->id }}">{{ $obat->nama_obat }}</option>
               @endforeach

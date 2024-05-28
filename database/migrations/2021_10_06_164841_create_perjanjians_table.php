@@ -20,6 +20,8 @@ class CreatePerjanjiansTable extends Migration
       $table->string('spesialiasi_dokter');
       $table->string('id_dokter');
       $table->string('waktu_perjanjian');
+      $table->string('keluhan_pasien')->nullable();
+      $table->string('obat_id')->nullable();
       $table->unsignedBigInteger('pasien_id');
       // $table->unsignedBigInteger('dokter_id');
       $table->foreign('pasien_id')->references('id')->on('users')->onDelete('cascade');

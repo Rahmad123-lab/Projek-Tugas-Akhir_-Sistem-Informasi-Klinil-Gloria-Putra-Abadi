@@ -70,9 +70,9 @@ class PerjanjianController extends Controller
    * @param  \App\Models\Perjanjian  $perjanjian
    * @return \Illuminate\Http\Response
    */
-  public function edit(Perjanjian $perjanjian)
+  public function edit($id)
   {
-    //
+    dd($id);
   }
 
   /**

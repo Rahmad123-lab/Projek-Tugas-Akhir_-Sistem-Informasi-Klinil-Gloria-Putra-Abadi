@@ -61,6 +61,7 @@
                 <th>Nama Dokter</th>
                 <th>Spesialisasi Dokter</th>
                 <th>Waktu Perjanjian</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tfoot>
@@ -69,6 +70,7 @@
                 <th>Nama Dokter</th>
                 <th>Spesialisasi Dokter</th>
                 <th>Waktu Perjanjian</th>
+                <th>Action</th>
               </tr>
             </tfoot>
             <tbody>
@@ -78,6 +80,24 @@
                 <td>{{ $data->nama_dokter }}</td>
                 <td>{{ $data->spesialiasi_dokter }}</td>
                 <td>{{ $data->waktu_perjanjian }}</td>
+                <td>
+                  <span>
+                    <a href="{{ route('pasien.edit', $data->id) }}" class="btn btn-warning">
+                      Edit
+                    </a>
+                  </span>
+                  <span>
+                    <a href="{{ route('pasien.show', $data->id) }}" class="btn btn-success">
+                      Info
+                    </a>
+                  </span>
+                  <form action="{{ route('pasien.destroy', $data->id) }}" method="post">
+                    @method('delete')
+                    @csrf
+                    <span><button onclick="return confirm('Are you sure?')" class="btn btn-danger d-block"
+                        type="submit">Hapus</button></span>
+                  </form>
+                </td>
               </tr>
               @endforeach
             </tbody>

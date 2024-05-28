@@ -65,8 +65,9 @@ class PasienController extends Controller
    * @param  \App\Models\Pasien  $pasien
    * @return \Illuminate\Http\Response
    */
-  public function show(Pasien $pasien)
+  public function show($id)
   {
+    $pasien = Perjanjian::find($id);
     $data = [
       'pasien' => $pasien
     ];
@@ -79,12 +80,14 @@ class PasienController extends Controller
    * @param  \App\Models\Pasien  $pasien
    * @return \Illuminate\Http\Response
    */
-  public function edit(Pasien $pasien)
+  public function edit($id)
   {
+    // dd($id);
     $dokters = Dokter::all();
     $obats = Obat::all();
+    $model = Perjanjian::find($id);
     $data = [
-      'pasien' => $pasien,
+      'model' => $model,
       'obats' => $obats,
       'dokters' => $dokters
     ];
@@ -98,12 +101,18 @@ class PasienController extends Controller
    * @param  \App\Models\Pasien  $pasien
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Pasien $pasien)
+  public function update(Request $request, $id)
   {
-    $validatedData = $request->all();
-    $validatedData['tgl_datang'] = $pasien->tgl_datang;
-    // return $validatedData;
-    $pasien->update($validatedData);
+    // $validatedData = $request->all();
+    // $validatedData['tgl_datang'] = $pasien->tgl_datang;
+    // // return $validatedData;
+    // $pasien->update($validatedData);
+// dd($request->post());
+    $model = Perjanjian::find($id);
+    $model->id_dokter = $request->dokter_id;
+    $model->keluhan_pasien = $request->keluhan_pasien;
+    $model->obat_id = $request->obat_id;
+    $model->save();
     return redirect()->route('dokter.index');
   }
 
@@ -113,10 +122,9 @@ class PasienController extends Controller
    * @param  \App\Models\Pasien  $pasien
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Pasien $pasien)
+  public function destroy($id)
   {
-    $perjanjian = Perjanjian::where('nama_pasien', $pasien->nama_pasien)->delete();
-    $pasien->delete();
+    $perjanjian = Perjanjian::find($id)->delete();
     return redirect()->route('pasien.index');
   }
 
