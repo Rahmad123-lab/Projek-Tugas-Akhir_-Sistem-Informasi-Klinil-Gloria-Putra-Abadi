@@ -20,11 +20,22 @@ class DokterController extends Controller
   public function index()
   {
     // $pasien = Pasien::with(['dokter'])->get();
-    $pasien = Dokter::with('pasiens')->where('nama_dokter', Auth::user()->name)->get()->collect();
-    $obat = Obat::with('pasien')->get();
+    if(Auth::user()->role == 'apoteker'){
+      $perjanjian = Perjanjian::get();
+      // dd($perjanjian);
+      $pasien = Dokter::with('pasiens')->get()->collect();
+      $obat = Obat::with('pasien')->get();
+    }else{
+      $perjanjian = Perjanjian::where('nama_dokter', Auth::user()->name)->get();
+      // dd($perjanjian);
+      $pasien = Dokter::with('pasiens')->get()->collect();
+      $obat = Obat::with('pasien')->get();
+    }
+
     $data = [
       'pasiens' => $pasien,
-      'obats' => $obat
+      'obats' => $obat,
+        'perjanjian'=>$perjanjian
     ];
     return view('dokter.index', $data);
   }
@@ -54,7 +65,7 @@ class DokterController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    dd($request->post());
   }
 
   /**

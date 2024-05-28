@@ -28,7 +28,8 @@ class PerjanjianRequest extends FormRequest
       'nama_dokter' => 'required',
       'spesialiasi_dokter' => 'required',
       'waktu_perjanjian' => 'required',
-      'pasien_id' => 'required'
+      'pasien_id' => 'required',
+      'id_dokter' => 'required',
     ];
   }
 }

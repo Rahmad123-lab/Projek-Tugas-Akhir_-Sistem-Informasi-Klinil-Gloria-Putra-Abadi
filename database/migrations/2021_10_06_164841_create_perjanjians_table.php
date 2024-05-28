@@ -18,6 +18,7 @@ class CreatePerjanjiansTable extends Migration
       $table->string('nama_pasien');
       $table->string('nama_dokter');
       $table->string('spesialiasi_dokter');
+      $table->string('id_dokter');
       $table->string('waktu_perjanjian');
       $table->unsignedBigInteger('pasien_id');
       // $table->unsignedBigInteger('dokter_id');

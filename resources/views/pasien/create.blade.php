@@ -61,7 +61,7 @@
             <select class="form-control" id="nama_dokter" name="nama_dokter">
               <option> Pilih salah satu</option>
               @foreach ($dokters as $dokter)
-              <option value="{{ $dokter->nama_dokter  }}">
+              <option value="{{ $dokter->id  }}">
                 {{ $dokter->nama_dokter }}
               </option>
               @endforeach

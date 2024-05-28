@@ -6,6 +6,7 @@ use App\Models\Perjanjian;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Perjanjian\PerjanjianRequest;
+use App\Models\Dokter;
 
 class PerjanjianController extends Controller
 {
@@ -35,10 +36,20 @@ class PerjanjianController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(PerjanjianRequest $request)
+  public function store(Request $request)
   {
-    $validdatedData = $request->all();
-    $perjanjian = Perjanjian::create($validdatedData);
+    $dokter = Dokter::find($request->nama_dokter);
+    $model = new Perjanjian();
+    $model->nama_pasien = $request->nama_pasien;
+    $model->pasien_id = $request->pasien_id;
+    $model->id_dokter = $request->nama_dokter;
+    $model->nama_dokter = $dokter->nama_dokter;
+    $model->spesialiasi_dokter = $request->spesialiasi_dokter;
+    $model->waktu_perjanjian = $request->waktu_perjanjian;
+    $model->save();
+    // dd($request->post());
+    // $validdatedData = $request->all();
+    // $perjanjian = Perjanjian::create($validdatedData);
     return redirect()->route('pasien.index');
   }
 

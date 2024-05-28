@@ -10,6 +10,15 @@ class Pasien extends Model
   use HasFactory;
   protected $guarded = ['id'];
   public $timestamps = true;
+    protected $fillable = [
+    'nama_pasien',
+    'nama_dokter',
+    'spesialiasi_dokter',
+    'id_dokter',
+    'waktu_perjanjian',
+    'pasien_id',
+  ];
+
 
   public function dokter()
   {

@@ -45,16 +45,45 @@
     <div class="card shadow mb-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data Pasien Anda
-          <span>
+          {{-- <span>
             <a href="{{ route('dokter.create') }}" class="btn btn-primary ml-4 font-weight-bold">
               + Tambah Pasien
             </a>
-          </span>
+          </span> --}}
         </h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Nama Pasien</th>
+                <th>Nama Dokter</th>
+                <th>Spesialisasi Dokter</th>
+                <th>Waktu Perjanjian</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Nama Pasien</th>
+                <th>Nama Dokter</th>
+                <th>Spesialisasi Dokter</th>
+                <th>Waktu Perjanjian</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              @foreach ($perjanjian as $data)
+              <tr>
+                <td>{{ $data->nama_pasien }}</td>
+                <td>{{ $data->nama_dokter }}</td>
+                <td>{{ $data->spesialiasi_dokter }}</td>
+                <td>{{ $data->waktu_perjanjian }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+
+          <table class="table table-bordered d-none" id="dataTable2" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th>Nama Pasien</th>
@@ -78,7 +107,7 @@
               </tr>
             </tfoot>
             <tbody>
-              @foreach ($pasiens as $pasien)
+              {{-- @foreach ($pasiens as $pasien)
               @foreach ($pasien->pasiens as $p)
               <tr>
                 <td>{{ $p->nama_pasien }}</td>
@@ -107,7 +136,7 @@
                 </td>
               </tr>
               @endforeach
-              @endforeach
+              @endforeach --}}
             </tbody>
           </table>
         </div>

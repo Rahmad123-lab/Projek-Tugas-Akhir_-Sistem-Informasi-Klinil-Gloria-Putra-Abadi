@@ -26,14 +26,14 @@ Route::get('/Home', function () {
     return view('frontend.index');
 });
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('checkRole:dokter,admin,pasien');
-Route::get('/generate-pdf/{pasien}', [PasienController::class, 'generatePDF'])->name('generatePDF')->middleware('checkRole:dokter,admin');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('checkRole:dokter,admin,pasien,apoteker');
+Route::get('/generate-pdf/{pasien}', [PasienController::class, 'generatePDF'])->name('generatePDF')->middleware('checkRole:dokter,admin,apoteker');
 Route::get('/', function () {
   return view('auth.login');
 })->middleware('guest');
-Route::resource('dokter', DokterController::class)->middleware('checkRole:dokter,admin');
-Route::resource('pasien', PasienController::class)->middleware('checkRole:dokter,pasien,admin');
-Route::resource('admin', AdminController::class)->middleware('checkRole:admin');
-Route::resource('perjanjian', PerjanjianController::class)->middleware('checkRole:pasien,admin');
-Route::resource('obat', ObatController::class)->middleware('checkRole:dokter,admin');
-Route::resource('admin-dokter', AdminDokterController::class)->middleware('checkRole:admin');
+Route::resource('dokter', DokterController::class)->middleware('checkRole:dokter,admin,apoteker');
+Route::resource('pasien', PasienController::class)->middleware('checkRole:dokter,pasien,admin,apoteker');
+Route::resource('admin', AdminController::class)->middleware('checkRole:admin,apoteker');
+Route::resource('perjanjian', PerjanjianController::class)->middleware('checkRole:pasien,admin,apoteker');
+Route::resource('obat', ObatController::class)->middleware('checkRole:dokter,admin,apoteker');
+Route::resource('admin-dokter', AdminDokterController::class)->middleware('checkRole:admin,apoteker');

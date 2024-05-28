@@ -25,10 +25,10 @@ class PasienRequest extends FormRequest
   {
     return [
       'nama_pasien' => 'required',
-      'alamat_pasien' => 'required',
-      'keluhan_pasien' => 'required',
-      'no_telp' => 'required',
-      'dokter_id' => 'required',
+      // 'alamat_pasien' => 'required',
+      // 'keluhan_pasien' => 'required',
+      // 'no_telp' => 'required',
+      'id_dokter' => 'required',
       // 'nama_obat' => 'required'
     ];
   }
