@@ -36,130 +36,62 @@
     </ul>
   </nav>
   <!-- End of Topbar -->
+
   <!-- Begin Page Content -->
   <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Daftar Pasien</h1>
-    <p class="mb-4">Daftar pasien anda</p>
+    <h1 class="h3 mb-2 text-gray-800">Daftar Pasien Spesialis Jantung</h1>
+    <p class="mb-4">Daftar pasien yang terdaftar ke dokter spesialis jantung</p>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Data Pasien Anda
-          {{-- <span>
-            <a href="{{ route('dokter.create') }}" class="btn btn-primary ml-4 font-weight-bold">
-              + Tambah Pasien
-            </a>
-          </span> --}}
-        </h6>
+        <h6 class="m-0 font-weight-bold text-primary">Data Pasien Anda</h6>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>Nama Pasien</th>
-                <th>Nama Dokter</th>
-                <th>Spesialisasi Dokter</th>
-                <th>Waktu Perjanjian</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>Nama Pasien</th>
-                <th>Nama Dokter</th>
-                <th>Spesialisasi Dokter</th>
-                <th>Waktu Perjanjian</th>
-                <th>Action</th>
-              </tr>
-            </tfoot>
-            <tbody>
-              @foreach ($perjanjian as $data)
-              <tr>
-                <td>{{ $data->nama_pasien }}</td>
-                <td>{{ $data->nama_dokter }}</td>
-                <td>{{ $data->spesialiasi_dokter }}</td>
-                <td>{{ $data->waktu_perjanjian }}</td>
-                <td>
-                  <span>
-                    <a href="{{ route('pasien.edit', $data->id) }}" class="btn btn-warning">
-                      Edit
-                    </a>
-                  </span>
-                  <span>
-                    <a href="{{ route('pasien.show', $data->id) }}" class="btn btn-success">
-                      Info
-                    </a>
-                  </span>
-                  <form action="{{ route('pasien.destroy', $data->id) }}" method="post">
-                    @method('delete')
-                    @csrf
-                    <span><button onclick="return confirm('Are you sure?')" class="btn btn-danger d-block"
-                        type="submit">Hapus</button></span>
-                  </form>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-
-          <table class="table table-bordered d-none" id="dataTable2" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>Nama Pasien</th>
-                <th>Alamat Pasien</th>
-                <th>Tanggal Berobat</th>
-                <th>Keluhan</th>
-                <th>Nama Dokter</th>
-                <th>Obat</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>Nama Pasien</th>
-                <th>Alamat Pasien</th>
-                <th>Tanggal Berobat</th>
-                <th>Keluhan</th>
-                <th>Nama Dokter</th>
-                <th>Obat</th>
-                <th>Action</th>
-              </tr>
-            </tfoot>
-            <tbody>
-              {{-- @foreach ($pasiens as $pasien)
-              @foreach ($pasien->pasiens as $p)
-              <tr>
-                <td>{{ $p->nama_pasien }}</td>
-                <td>{{ $p->alamat_pasien }}</td>
-                <td>{{ $p->tgl_datang }}</td>
-                <td>{{ $p->keluhan_pasien }}</td>
-                <td>{{ $p->dokter->nama_dokter }}</td>
-                <td>{{ $p->nama_obat }}</td>
-                <td>
-                  <span>
-                    <a href="{{ route('pasien.edit', $p->id) }}" class="btn btn-warning">
-                      Edit
-                    </a>
-                  </span>
-                  <span>
-                    <a href="{{ route('pasien.show', $p->id) }}" class="btn btn-success">
-                      Info
-                    </a>
-                  </span>
-                  <form action="{{ route('pasien.destroy', $p->id) }}" method="post">
-                    @method('delete')
-                    @csrf
-                    <span><button onclick="return confirm('Are you sure?')" class="btn btn-danger d-block"
-                        type="submit">Hapus</button></span>
-                  </form>
-                </td>
-              </tr>
-              @endforeach
-              @endforeach --}}
-            </tbody>
-          </table>
-        </div>
+        @if($perjanjian->isEmpty())
+          <div class="alert alert-info">
+            Tidak ada pasien yang terdaftar ke spesialis jantung.
+          </div>
+        @else
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Nama Pasien</th>
+                  <th>Nama Dokter</th>
+                  <th>Spesialisasi Dokter</th>
+                  <th>Waktu Perjanjian</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($perjanjian as $data)
+                  @if ($data->spesialiasi_dokter == 'Jantung')
+                    <tr>
+                      <td>{{ $data->nama_pasien }}</td>
+                      <td>{{ $data->nama_dokter }}</td>
+                      <td>{{ $data->spesialiasi_dokter }}</td>
+                      <td>{{ $data->waktu_perjanjian }}</td>
+                      <td>
+                        <span>
+                          <a href="{{ route('pasien.edit', $data->id) }}" class="btn btn-warning">Edit</a>
+                        </span>
+                        <span>
+                          <a href="{{ route('pasien.show', $data->id) }}" class="btn btn-success">Info</a>
+                        </span>
+                        <form action="{{ route('pasien.destroy', $data->id) }}" method="post" style="display:inline;">
+                          @method('delete')
+                          @csrf
+                          <span><button onclick="return confirm('Are you sure?')" class="btn btn-danger" type="submit">Hapus</button></span>
+                        </form>
+                      </td>
+                    </tr>
+                  @endif
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        @endif
       </div>
     </div>
   </div>

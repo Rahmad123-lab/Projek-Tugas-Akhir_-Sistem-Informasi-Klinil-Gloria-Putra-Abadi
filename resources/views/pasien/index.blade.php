@@ -22,7 +22,7 @@
           <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
         </a>
         <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
           <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
@@ -35,6 +35,7 @@
     </ul>
   </nav>
   <!-- End of Topbar -->
+
   <!-- Begin Page Content -->
   <div class="container-fluid">
     <!-- Page Heading -->
@@ -47,36 +48,34 @@
         </a>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>Nama Pasien</th>
-                <th>Nama Dokter</th>
-                <th>Spesialisasi Dokter</th>
-                <th>Waktu Perjanjian</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>Nama Pasien</th>
-                <th>Nama Dokter</th>
-                <th>Spesialisasi Dokter</th>
-                <th>Waktu Perjanjian</th>
-              </tr>
-            </tfoot>
-            <tbody>
-              @foreach ($pasiens as $pasien)
-              <tr>
-                <td>{{ $pasien->nama_pasien }}</td>
-                <td>{{ $pasien->nama_dokter }}</td>
-                <td>{{ $pasien->spesialiasi_dokter }}</td>
-                <td>{{ $pasien->waktu_perjanjian }}</td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
+        @if($pasiens->isEmpty())
+          <div class="alert alert-info">
+            Anda Belum memiliki riwayat berobat.
+          </div>
+        @else
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Nama Pasien</th>
+                  <th>Nama Dokter</th>
+                  <th>Spesialisasi Dokter</th>
+                  <th>Waktu Perjanjian</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($pasiens as $pasien)
+                  <tr>
+                    <td>{{ $pasien->nama_pasien }}</td>
+                    <td>{{ $pasien->nama_dokter }}</td>
+                    <td>{{ $pasien->spesialiasi_dokter }}</td>
+                    <td>{{ $pasien->waktu_perjanjian }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        @endif
       </div>
     </div>
   </div>

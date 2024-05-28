@@ -58,13 +58,7 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tfoot>
-              <tr>
-                <th>Nama User</th>
-                <th>Email User</th>
-                <th>Role User</th>
-                <th>Actions</th>
-              </tr>
+                  </tr>
             </tfoot>
             <tbody>
               @foreach ($users as $user)

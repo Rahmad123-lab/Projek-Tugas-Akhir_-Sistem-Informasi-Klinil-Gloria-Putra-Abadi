@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>E-Klinik</title>
+  <title>Klinik Gloria Putra Abadi</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
@@ -188,7 +188,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; E-Klinik 2021</span>
+            <span>Klinik Gloria Putra Abadi  &copy; 2024</span>
           </div>
         </div>
       </footer>

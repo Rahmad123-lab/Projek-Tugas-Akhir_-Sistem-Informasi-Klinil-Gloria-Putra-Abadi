@@ -22,13 +22,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-Route::get('/Home', function () {
+Route::get('/', function () {
     return view('frontend.index');
+});
+Route::get('/jadwaldokter', function() {
+    return view('frontend.jadwaldokter');
+});
+Route::get('/layanan', function() {
+    return view('frontend.layanan');
+});
+Route::get('/tentang', function() {
+    return view('frontend.tentang');
+});
+Route::get('/Kontak', function() {
+    return view('frontend.contact');
 });
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('checkRole:dokter,admin,pasien,apoteker');
 Route::get('/generate-pdf/{pasien}', [PasienController::class, 'generatePDF'])->name('generatePDF')->middleware('checkRole:dokter,admin,apoteker');
-Route::get('/', function () {
+Route::get('/auth/login', function () {
   return view('auth.login');
 })->middleware('guest');
 Route::resource('dokter', DokterController::class)->middleware('checkRole:dokter,admin,apoteker');

@@ -9,16 +9,16 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login Page</title>
+  <title>Halaman Login | Klinik GPA</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -31,10 +31,17 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
+                {{-- <div class="text-center mb-4">
+                    <img src="public/img/logoklinik.svg" alt="Klinik GPA" class="img-fluid">
+                  </div> --}}
               <div class="col-lg-12">
                 <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Silahkan login terlebih dahulu</h1>
+                    {{-- <div class="text-center mb-4">
+                        <img src="Sistem-Informasi-Klinik\public\img\logoklinik.png" alt="Klinik GPA" class="img-fluid"> --}}
+                      {{-- </div> --}}
+                  <div class="text-center mb-4">
+                    <img src="/img/logoklinik.png" alt="" width="120">
+                    <h1 class="h4 text-gray-900 mb-4">Klinik Gloria Putra Abadi</h1>
                   </div>
                   <form class="user" method="POST" action="{{ route('login') }}"
                     enctype="application/x-www-form-urlencoded">
@@ -42,7 +49,7 @@
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
                         name="email" value="{{ old('email') }}" required autocomplete="email"
-                        placeholder="Email Address">
+                        placeholder="Alamat Email">
                       @error('email')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -52,26 +59,26 @@
                     <div class="form-group">
                       <input type="password"
                         class="form-control form-control-user @error('password') is-invalid @enderror" name="password"
-                        required autocomplete="current-password" placeholder="Password">
+                        required autocomplete="current-password" placeholder="Kata Sandi">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" name="remember" class="custom-control-input" id="customCheck"
                           {{ old('remember') ? 'checked' : '' }}>
-                        <label class="custom-control-label" for="customCheck">Remember
-                          Me</label>
+                        <label class="custom-control-label" for="customCheck">Ingat Saya</label>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                      Login
+                      Masuk
                     </button>
                     <hr>
                   </form>
-                  {{-- <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div> --}}
                   <div class="text-center">
-                    <a class="small" href="{{ route('register') }}">Create an Account!</a>
+                    <a class="small" href="forgot-password.html">Lupa Kata sandi?</a>
+                  </div>
+
+                  <div class="text-center">
+                    <a class="small" href="{{ route('register') }}">Daftar Akun!</a>
                   </div>
                 </div>
               </div>

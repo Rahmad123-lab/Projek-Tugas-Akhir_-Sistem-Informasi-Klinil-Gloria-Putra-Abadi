@@ -67,14 +67,6 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tfoot>
-              <tr>
-                <th>Nama Dokter</th>
-                <th>Spesialisasi</th>
-                <th>Alamat</th>
-                <th>Actions</th>
-              </tr>
-            </tfoot>
             <tbody>
               @foreach ($dokters as $dokter)
               <tr>

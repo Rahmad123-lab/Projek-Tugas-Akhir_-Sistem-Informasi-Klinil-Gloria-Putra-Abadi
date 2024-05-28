@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Register</title>
+  <title>Daftar Akun | Klinik GPA</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -79,7 +79,7 @@
                 <hr>
               </form>
               <div class="text-center">
-                <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
+                <a class="small" href="{{ route('login') }}">Sudah Punya Akun? Masuk!</a>
               </div>
             </div>
           </div>

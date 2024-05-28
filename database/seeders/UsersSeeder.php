@@ -35,7 +35,7 @@ class UsersSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Apoteker User',
+                'name' => 'Apoteker',
                 'email' => 'apoteker@gmail.com',
                 'password' => $defaultPassword,
                 'role' => 'apoteker',
@@ -67,14 +67,14 @@ class UsersSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Dr Qiana',
-                'email' => 'qiana@gmail.com',
+                'name' => 'Dr.Sudomo',
+                'email' => 'doktersudomo@gmail.com',
                 'password' => $defaultPassword,
                 'role' => 'dokter',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            
+
         ]);
     }
 }
