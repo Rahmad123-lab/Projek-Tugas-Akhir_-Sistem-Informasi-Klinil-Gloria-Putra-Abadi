@@ -18,6 +18,7 @@ class CreateDoktersTable extends Migration
       $table->string('nama_dokter');
       $table->string('spesialisasi_dokter');
       $table->string('alamat_dokter');
+      $table->integer('id_user');
       $table->timestamps();
     });
   }
