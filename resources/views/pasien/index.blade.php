@@ -69,7 +69,7 @@
                   <tr>
                     <td>{{ $pasien->nama_pasien }}</td>
                     <td>{{ $pasien->nama_dokter }}</td>
-                    <td>{{ $pasien->dokter->spesialiasi_dokter }}</td>
+                    <td>{{ $pasien->dokter->spesialisasi_dokter }}</td>
                     <td>{{ $pasien->waktu_perjanjian }}</td>
                     <td>
                           <span>

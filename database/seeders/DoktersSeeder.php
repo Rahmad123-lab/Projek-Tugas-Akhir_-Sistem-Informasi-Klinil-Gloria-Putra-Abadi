@@ -39,6 +39,14 @@ class DoktersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'nama_dokter' => 'Dr Sabrina',
+                'spesialisasi_dokter' => 'Poli Umum',
+                'alamat_dokter' => 'Jln. HKI Tarutung, Kab. Tapanuli Utara',
+                'id_user'=>6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
 
 
         ]);

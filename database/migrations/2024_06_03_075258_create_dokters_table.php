@@ -15,10 +15,10 @@ class CreateDoktersTable extends Migration
     {
         Schema::create('dokters', function (Blueprint $table) {
             $table->id();
-            $table->string('alamat_dokter')->default('Alamat belum diisi'); // Ubah di sini
             $table->unsignedBigInteger('id_user')->nullable();
+            $table->string('alamat_dokter')->nullable();
             $table->string('nama_dokter');
-            $table->string('spesialisasi_dokter')->default();
+            $table->string('spesialisasi_dokter');
             $table->string('jadwal_dokter')->nullable();
             $table->timestamps();
         });

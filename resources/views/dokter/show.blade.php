@@ -3,7 +3,6 @@
 @section('content')
 <!-- Main Content -->
 <div id="content">
-  <!-- End of Topbar -->
   <!-- Begin Page Content -->
   <div class="container-fluid mt-5">
     <!-- Page Heading -->
@@ -14,8 +13,11 @@
       <div class="card-header py-3">
         <span>
           <a href="{{ route('dokter.index') }}" class="btn btn-primary font-weight-bold">
-            Kembali </a> </span> <span>
-          <a href="{{ route('generatePDF', $pasien->id ) }}" class="btn btn-success font-weight-bold">
+            Kembali
+          </a>
+        </span>
+        <span>
+          <a href="{{ route('generatePDF', $pasien->id) }}" class="btn btn-success font-weight-bold">
             Cetak Rekam Pasien
           </a>
         </span>
@@ -37,7 +39,7 @@
               <tr>
                 <td>{{ $pasien->nama_pasien }}</td>
                 <td>{{ $pasien->alamat_pasien }}</td>
-                <td>{{ $pasien->tgl_berobat }}</td>
+                <td>{{ $pasien->created_at->format('d/m/Y') }}</td> <!-- Display date of registration -->
                 <td>{{ $pasien->keluhan_pasien }}</td>
                 <td>{{ $pasien->nama_dokter }}</td>
                 <td>{{ $pasien->nama_obat }}</td>

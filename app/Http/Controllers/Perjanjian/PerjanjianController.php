@@ -16,13 +16,23 @@ class PerjanjianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        // Ambil semua perjanjian dari database
-        $perjanjians = Perjanjian::all();
+{
+    // Ambil dokter yang sedang login
+    $user = auth()->user();
+    $dokter = $user->dokter;
 
-        // Kirim data perjanjian ke tampilan
-        return view('perjanjian.index', compact('perjanjians'));
+    // Ambil semua perjanjian yang terkait dengan dokter yang sedang login
+    if ($dokter) {
+        $perjanjians = Perjanjian::where('dokter_id', $dokter->id)->get();
+    } else {
+        // Jika bukan dokter yang login, tampilkan semua perjanjian atau sesuai dengan logika lain
+        $perjanjians = Perjanjian::all();
     }
+
+    // Kirim data perjanjian ke tampilan
+    return view('pasien.index', compact('perjanjians'));
+}
+
 
 
     /**
@@ -116,6 +126,7 @@ class PerjanjianController extends Controller
 
         // Update data perjanjian
         $perjanjian->update($validatedData);
+        $perjanjian->keluhan = $request->keluhan;
 
         return redirect()->route('pasien.index')->with('success', 'Perjanjian berhasil diperbarui.');
     }

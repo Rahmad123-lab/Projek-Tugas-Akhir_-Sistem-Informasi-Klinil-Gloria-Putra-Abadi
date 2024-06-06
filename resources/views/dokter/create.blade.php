@@ -57,7 +57,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($perjanjian as $data)
+                @foreach ($perjanjian as $pasien)
                   @if(in_array($data->spesialiasi_dokter, ['Poli Umum', 'Poli Anak', 'Poli Lansia']))
                     <tr>
                       <td>{{ $data->nama_pasien }}</td>

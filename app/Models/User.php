@@ -62,4 +62,8 @@ class User extends Authenticatable
   {
     return $this->hasMany(Perjanjian::class);
   }
+  public function dokter()
+    {
+        return $this->hasOne(Dokter::class, 'id_user');
+    }
 }

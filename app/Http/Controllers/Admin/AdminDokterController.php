@@ -47,16 +47,24 @@ class AdminDokterController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Debugging untuk melihat input yang diterima
+        dd($request->all());
+
         $request->validate([
             'nama_dokter' => 'required|string|max:255',
-            'alamat_dokter' => 'required|string|max:255',
-            'spesialisasi_dokter' => 'required|string|max:255',
-            'jadwal_dokter' => 'nullable|string|max:255',
+            'alamat_dokter' => 'nullable|string',
+            'spesialisasi_dokter' => 'required|string',
         ]);
 
         $dokter = Dokter::findOrFail($id);
-        $dokter->update($request->all());
+        $dokter->update([
+            'nama_dokter' => $request->input('nama_dokter'),
+            'alamat_dokter' => $request->input('alamat_dokter'),
+            'spesialisasi_dokter' => $request->input('spesialisasi_dokter'),
+        ]);
 
-        return redirect()->route('admin-dokter.index')->with('success', 'Data dokter berhasil diperbarui.');
+        return redirect()->route('admin-dokter.index')->with('success', 'Data dokter berhasil diperbarui');
     }
+
+
 }
