@@ -24,12 +24,13 @@ class PasienRequest extends FormRequest
   public function rules()
   {
     return [
-      'nama_pasien' => 'required',
-      // 'alamat_pasien' => 'required',
-      // 'keluhan_pasien' => 'required',
-      // 'no_telp' => 'required',
-      'id_dokter' => 'required',
-      // 'nama_obat' => 'required'
+      'nama_pasien' => 'required|string|max:255',
+      'umur' => 'required|integer|min:0',
+      'tanggal_lahir' => 'required|date',
+      'alamat' => 'required|string|max:255',
+      'nik' => 'required|string|max:16',
+      'jenis_kelamin' => 'required|string|in:Laki-laki,Perempuan',
+      'telepon' => 'required|string|max:15',
     ];
   }
 }

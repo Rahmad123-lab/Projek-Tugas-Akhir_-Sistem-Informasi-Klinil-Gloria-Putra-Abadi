@@ -24,12 +24,16 @@ class PerjanjianRequest extends FormRequest
   public function rules()
   {
     return [
-      'nama_pasien' => 'required',
-      'nama_dokter' => 'required',
-      'spesialiasi_dokter' => 'required',
-      'waktu_perjanjian' => 'required',
-      'pasien_id' => 'required',
-      'id_dokter' => 'required',
+      'nama_pasien' => 'required|string|max:255',
+      'pasien_id' => 'required|exists:pasiens,id',
+      'dokter_id' => 'required|exists:dokters,id',
+      'nama_dokter' => 'required|string|max:255',
+      'spesialiasi_dokter' => 'required|string|max:255',
+      'waktu_perjanjian' => 'required|string|max:255',
+      'umur_pasien' => 'required|integer',
+      'alamat_pasien' => 'required|string|max:255',
+      'tanggal_pemeriksaan' => 'required|date',
+      'keluhan' => 'required|string|max:255',
     ];
   }
 }

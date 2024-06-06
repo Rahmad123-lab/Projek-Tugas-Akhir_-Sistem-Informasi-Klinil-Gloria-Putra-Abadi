@@ -33,21 +33,11 @@
                 <th>Obat</th>
               </tr>
             </thead>
-            <tfoot>
-              <tr>
-                <th>Nama Pasien</th>
-                <th>Alamat Pasien</th>
-                <th>Tanggal Berobat</th>
-                <th>Keluhan</th>
-                <th>Nama Dokter</th>
-                <th>Obat</th>
-              </tr>
-            </tfoot>
             <tbody>
               <tr>
                 <td>{{ $pasien->nama_pasien }}</td>
                 <td>{{ $pasien->alamat_pasien }}</td>
-                <td>{{ $pasien->tgl_datang }}</td>
+                <td>{{ $pasien->tgl_berobat }}</td>
                 <td>{{ $pasien->keluhan_pasien }}</td>
                 <td>{{ $pasien->nama_dokter }}</td>
                 <td>{{ $pasien->nama_obat }}</td>

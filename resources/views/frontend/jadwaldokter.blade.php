@@ -87,55 +87,14 @@
               <table class="table table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th>Hari</th>
                     <th>Nama Dokter</th>
                     <th>Spesialis</th>
+                    <th>Hari</th>
                     <th>Jam Praktek</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Senin</td>
-                    <td>dr. Sudomo Colombus Situmorang, S.Farm</td>
-                    <td>Umum</td>
-                    <td>08:00 - 14:00</td>
-                  </tr>
-                  <tr>
-                    <td>Selasa</td>
-                    <td>dr. Marry Lou</td>
-                    <td>Anak</td>
-                    <td>08:00 - 14:00</td>
-                  </tr>
-                  <tr>
-                    <td>Rabu</td>
-                    <td>dr. Sansa Stark</td>
-                    <td>Bedah</td>
-                    <td>08:00 - 14:00</td>
-                  </tr>
-                  <tr>
-                    <td>Kamis</td>
-                    <td>dr. Sudomo Colombus Situmorang, S.Farm</td>
-                    <td>Umum</td>
-                    <td>08:00 - 14:00</td>
-                  </tr>
-                  <tr>
-                    <td>Jumat</td>
-                    <td>dr. Marry Lou</td>
-                    <td>Anak</td>
-                    <td>08:00 - 14:00</td>
-                  </tr>
-                  <tr>
-                    <td>Sabtu</td>
-                    <td>dr. Sansa Stark</td>
-                    <td>Bedah</td>
-                    <td>08:00 - 12:00</td>
-                  </tr>
-                  <tr>
-                    <td>Minggu</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>
@@ -158,7 +117,6 @@
                     </a>
                   </figure>
                 </div>
-                <p>Klinik Gloria Putra Abadi merupakan Satuan Usaha yang bergerak dibidang layanan kesehatan yang mencakup Klinik Pratama, Klinik Utama, Laboratorium Klinik, Apotek, Fisioterapi.</p>
                 <ul class="location-link">
                   <li class="item">
                     <i class="fa fa-map-marker"></i>
@@ -232,7 +190,7 @@
       <div class="footer-bottom">
         <div class="container clearfix">
           <div class="copyright-text">
-            <p>&copy; 2023 Klinik Gloria Putra Abadi. All rights reserved.</p>
+            <p>Klinik Gloria Putra Abadi &copy; 2024 </p>
           </div>
         </div>
       </div>

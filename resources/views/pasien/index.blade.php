@@ -50,7 +50,7 @@
       <div class="card-body">
         @if($pasiens->isEmpty())
           <div class="alert alert-info">
-            Anda Belum memiliki riwayat berobat.
+              Anda Belum memiliki Riwayat berobat.
           </div>
         @else
           <div class="table-responsive">
@@ -61,6 +61,7 @@
                   <th>Nama Dokter</th>
                   <th>Spesialisasi Dokter</th>
                   <th>Waktu Perjanjian</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,9 +69,16 @@
                   <tr>
                     <td>{{ $pasien->nama_pasien }}</td>
                     <td>{{ $pasien->nama_dokter }}</td>
-                    <td>{{ $pasien->spesialiasi_dokter }}</td>
+                    <td>{{ $pasien->dokter->spesialiasi_dokter }}</td>
                     <td>{{ $pasien->waktu_perjanjian }}</td>
-                  </tr>
+                    <td>
+                          <span>
+                            <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-success">
+                              Info
+                            </a>
+                          </span>
+                           </td>
+                     </tr>
                 @endforeach
               </tbody>
             </table>

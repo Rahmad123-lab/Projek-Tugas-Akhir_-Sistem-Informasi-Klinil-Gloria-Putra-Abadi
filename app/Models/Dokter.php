@@ -7,10 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dokter extends Model
 {
-  use HasFactory;
-  protected $guarded = ['id'];
-  public function pasiens()
-  {
-    return $this->hasMany(Pasien::class);
-  }
+    use HasFactory;
+        protected $fillable = [
+        'nama_dokter', 'spesialisasi', 'alamat'
+    ];
+
+    public function pasiens()
+    {
+        return $this->hasMany(Pasien::class, 'dokter_id');
+    }
+
+    public function perjanjian()
+    {
+        return $this->hasMany(Perjanjian::class, 'dokter_id');
+    }
+
+    public function jadwal()
+    {
+        return $this->hasMany(JadwalDokterNew::class, 'dokter_id');
+    }
 }

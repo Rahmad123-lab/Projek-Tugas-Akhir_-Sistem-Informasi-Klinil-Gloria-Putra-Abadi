@@ -21,16 +21,18 @@ class PasienController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
-  {
-    $perjanjians = Perjanjian::with('pasien')->where('pasien_id', Auth::user()->id)->get();
-    $data  = [
-      'pasiens' => $perjanjians
-    ];
-    return view('pasien.index', $data);
-  }
+  // Di dalam controller, pastikan Anda melewatkan data ke tampilan dengan menggunakan variabel $pasiens
+public function index()
+{
+    // Ambil data pasien dari database
+    $pasiens = Perjanjian::with('pasien')->where('pasien_id', Auth::user()->id)->get();
 
-  /**
+    // Kirim data ke view
+    return view('pasien.index', ['pasiens' => $pasiens]);
+}
+
+
+   /**
    * Show the form for creating a new resource.
    *
    * @return \Illuminate\Http\Response
@@ -52,11 +54,14 @@ class PasienController extends Controller
    */
   public function store(PasienRequest $request)
   {
-    $validatedData = $request->all();
-    // dd($validatedData);
-    $validatedData['tgl_datang'] = Carbon::now();
-    Pasien::create($validatedData);
-    return redirect()->route('dokter.index');
+      $validatedData = $request->all();
+      // Debugging data yang diterima
+      //dd($validatedData);
+
+      $validatedData['tgl_datang'] = Carbon::now();
+      Pasien::create($validatedData);
+
+      return redirect()->route('dokter.index')->with('success', 'Pasien berhasil ditambahkan');
   }
 
   /**
@@ -109,7 +114,7 @@ class PasienController extends Controller
     // $pasien->update($validatedData);
 // dd($request->post());
     $model = Perjanjian::find($id);
-    $model->id_dokter = $request->dokter_id;
+    $model->dokter_id = $request->dokter_id;
     $model->keluhan_pasien = $request->keluhan_pasien;
     $model->obat_id = $request->obat_id;
     $model->save();
@@ -131,11 +136,11 @@ class PasienController extends Controller
   public function generatePDF(Pasien $pasien)
   {
     $dataPasien = Pasien::with('dokter')->where('nama_pasien', $pasien->nama_pasien)->get();
-    // $data = [
-    //   'pasiens' => $dataPasien
-    // ];
-    // return view('cetak-pasien', $data);
-    // dd($dataPasien);
+    $data = [
+      'pasiens' => $dataPasien
+    ];
+    return view('cetak-pasien', $data);
+    dd($dataPasien);
     $data = $dataPasien;
     view()->share('pasiens', $data);
     $pdf = PDF::loadView('cetak-pasien', $data);

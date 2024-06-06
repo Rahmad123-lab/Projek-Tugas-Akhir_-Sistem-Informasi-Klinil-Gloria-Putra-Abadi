@@ -150,12 +150,12 @@
 
 <body>
   <header class="clearfix">
-    <h1>E-Klinik</h1>
+    <h1>Klinik Gloria Putra Abadi</h1>
     <div id="company" class="clearfix">
       <div>Rekam Medis</div>
-      <div>Jalan Asia Afrika 12</div>
+      <div>Tarutung</div>
       <div>(602) 519-0450</div>
-      <div><a>e-klinik@email.com</a></div>
+      <div><a>klinikgloriaputraabadi@email.com</a></div>
     </div>
     <br>
   </header>

@@ -35,53 +35,54 @@
   <!-- End of Topbar -->
   <!-- Begin Page Content -->
   <div class="container-fluid">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-3 font-weight-bold text-gray-800">Stock Obat</h1>
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h5 class="font-weight-bold text-primary">Daftar Obat
-          <span>
-            <a href="{{ route('obat.create') }}" class="btn ml-4 btn-primary font-weight-bold">
-              + Tambah Obat
-            </a>
-          </span>
-        </h5>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>Nama Obat</th>
-                <th>Jumlah Obat</th>
-                <th>Harga Obat</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($obats as $obat)
-              <tr>
-                <td>{{ $obat->nama_obat }}</td>
-                <td>{{ $obat->jumlah_obat }}</td>
-                <td>Rp{{ number_format($obat->harga_obat) }}</td>
-                <td>
-                  <span><a href="{{ route('obat.edit', $obat->id) }}" class="btn btn-warning">Edit</a></span>
-                  <form action="{{ route('obat.destroy', $obat->id) }}" method="post">
-                    @method('delete')
-                    @csrf
-                    <span><button onclick="return confirm('Are you sure?')" class="btn btn-danger d-block"
-                        type="submit">Hapus</button></span>
-                  </form>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-      </div>
+   <!-- Page Heading -->
+<h1 class="h3 mb-3 font-weight-bold text-gray-800">Stock Obat</h1>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h5 class="font-weight-bold text-primary">Daftar Obat
+      @if(Auth::user()->role !== 'admin') <!-- Check if user is not admin -->
+      <span>
+        <a href="{{ route('obat.create') }}" class="btn ml-4 btn-primary font-weight-bold">
+          + Tambah Obat
+        </a>
+      </span>
+      @endif
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Nama Obat</th>
+            <th>Jumlah Obat</th>
+            <th>Harga Obat</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($obats as $obat)
+          <tr>
+            <td>{{ $obat->nama_obat }}</td>
+            <td>{{ $obat->jumlah_obat }}</td>
+            <td>Rp{{ number_format($obat->harga_obat) }}</td>
+            <td>
+              <span><a href="{{ route('obat.edit', $obat->id) }}" class="btn btn-warning">Edit</a></span>
+              <form action="{{ route('obat.destroy', $obat->id) }}" method="post">
+                @method('delete')
+                @csrf
+                <span><button onclick="return confirm('Are you sure?')" class="btn btn-danger d-block" type="submit">Hapus</button></span>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
+
   <!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,11 +17,11 @@ class User extends Authenticatable
    * @var string[]
    */
   protected $guarded = ['id'];
-  // protected $fillable = [
-  //   'name',
-  //   'email',
-  //   'password',
-  // ];
+  protected $fillable = [
+    'name',
+    'email',
+    'password',
+  ];
 
   /**
    * The attributes that should be hidden for serialization.
@@ -42,6 +41,23 @@ class User extends Authenticatable
   protected $casts = [
     'email_verified_at' => 'datetime',
   ];
+
+  /**
+   * Check if the user is an admin.
+   *
+   * @return bool
+   */
+  public function isAdmin()
+  {
+    // Implement your logic here to determine if the user is an admin
+    return $this->role === 'admin';
+  }
+
+  /**
+   * Define the relationship between the User and Perjanjian models.
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
   public function perjanjians()
   {
     return $this->hasMany(Perjanjian::class);

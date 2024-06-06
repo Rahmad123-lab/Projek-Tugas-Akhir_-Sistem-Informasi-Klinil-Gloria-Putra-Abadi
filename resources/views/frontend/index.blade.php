@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="plugins/slick/slick-theme.css">
   <!-- FancyBox -->
   <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <!-- Stylesheets -->
   <link href="css/style.css" rel="stylesheet">
@@ -19,7 +20,6 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
 </head>
 <body>
   <div class="page-wrapper">
@@ -144,6 +144,12 @@
         </div>
     </div>
 </div>
+<div class="qlwapp-icon qlwapp - whatsapp-icon">
+    <a href="https://wa.me/6282119695900?text=Halo%20Admin%20Klinik%20Unpad!%20Saya%20ingin%20menanyakan%20sesuatu" class="whatsapp-button" target="_blank">
+        <i class="fa fa-whatsapp"></i> WhatsApp Call Center
+      </a>
+  </div>
+
 
 <!--====  End of Page Slider  ====-->
 

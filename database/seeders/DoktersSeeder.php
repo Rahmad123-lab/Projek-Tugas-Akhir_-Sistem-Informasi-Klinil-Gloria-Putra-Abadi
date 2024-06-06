@@ -16,39 +16,31 @@ class DoktersSeeder extends Seeder
     {
         DB::table('dokters')->insert([
             [
-                'nama_dokter' => 'Dr Barra Baihaqi',
-                'spesialisasi_dokter' => 'Obgyn',
-                'alamat_dokter' => 'Jl Darmo',
+                'nama_dokter' => 'Dr.Sudomo Colombus Situmorang, S.Farm',
+                'spesialisasi_dokter' => ' Poli Umum',
+                'alamat_dokter' => 'Jln. Ferdinan Lumban Tobing ',
                 'id_user'=>3,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'nama_dokter' => 'Dr Barri Tasbiha',
-                'spesialisasi_dokter' => 'Mata',
-                'alamat_dokter' => 'Jl Jawa',
+                'spesialisasi_dokter' => 'Poli Anak',
+                'alamat_dokter' => 'Jln. HKI Tarutung, Kab. Tapanuli Utara',
                 'id_user'=>4,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'nama_dokter' => 'Dr Sybill',
-                'spesialisasi_dokter' => 'Jantung',
-                'alamat_dokter' => 'Jl Semarang',
+                'spesialisasi_dokter' => 'Poli Lansia',
+                'alamat_dokter' => 'Jln. HKI Tarutung, Kab. Tapanuli Utara',
                 'id_user'=>5,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'nama_dokter' => 'Dr Qiana',
-                'spesialisasi_dokter' => 'THT',
-                'alamat_dokter' => 'Jl Makasar',
-                'id_user'=>6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
 
-            
+
         ]);
     }
 }

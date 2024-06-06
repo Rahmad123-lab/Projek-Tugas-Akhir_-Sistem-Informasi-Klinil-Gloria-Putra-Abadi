@@ -58,8 +58,6 @@
                 <th>Actions</th>
               </tr>
             </thead>
-                  </tr>
-            </tfoot>
             <tbody>
               @foreach ($users as $user)
               <tr>

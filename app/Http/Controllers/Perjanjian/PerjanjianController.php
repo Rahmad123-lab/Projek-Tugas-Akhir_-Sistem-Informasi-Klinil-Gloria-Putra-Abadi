@@ -10,91 +10,127 @@ use App\Models\Dokter;
 
 class PerjanjianController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function index()
-  {
-    //
-  }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        // Ambil semua perjanjian dari database
+        $perjanjians = Perjanjian::all();
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
-  {
-    //
-  }
+        // Kirim data perjanjian ke tampilan
+        return view('perjanjian.index', compact('perjanjians'));
+    }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(Request $request)
-  {
-    $dokter = Dokter::find($request->nama_dokter);
-    $model = new Perjanjian();
-    $model->nama_pasien = $request->nama_pasien;
-    $model->pasien_id = $request->pasien_id;
-    $model->id_dokter = $request->nama_dokter;
-    $model->nama_dokter = $dokter->nama_dokter;
-    $model->spesialiasi_dokter = $request->spesialiasi_dokter;
-    $model->waktu_perjanjian = $request->waktu_perjanjian;
-    $model->save();
-    // dd($request->post());
-    // $validdatedData = $request->all();
-    // $perjanjian = Perjanjian::create($validdatedData);
-    return redirect()->route('pasien.index');
-  }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\Perjanjian  $perjanjian
-   * @return \Illuminate\Http\Response
-   */
-  public function show(Perjanjian $perjanjian)
-  {
-    //
-  }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        // Logika untuk menampilkan form pembuatan perjanjian
+    }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\Perjanjian  $perjanjian
-   * @return \Illuminate\Http\Response
-   */
-  public function edit($id)
-  {
-    dd($id);
-  }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'umur' => 'required|integer',
+            'nik' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string|max:255',
+            'nama_dokter' => 'required|exists:dokters,id',
+            'spesialiasi_dokter' => 'required|string',
+            'waktu_perjanjian' => 'required|string',
+        ]);
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Perjanjian  $perjanjian
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, Perjanjian $perjanjian)
-  {
-    //
-  }
+        $dokter = Dokter::find($request->nama_dokter);
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Models\Perjanjian  $perjanjian
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy(Perjanjian $perjanjian)
-  {
-    //
-  }
+        $perjanjian = new Perjanjian([
+            'nama_pasien' => $request->nama,
+            'pasien_id' => $request->pasien_id,
+            'dokter_id' => $request->nama_dokter,
+            'nama_dokter' => $dokter->nama_dokter,
+            'spesialiasi_dokter' => $dokter->spesialisasi_dokter,
+            'waktu_perjanjian' => $request->waktu_perjanjian,
+            'umur_pasien' => $request->umur,
+            'alamat_pasien' => $request->alamat,
+            'tanggal_lahir_pasien' => $request->tanggal_lahir,
+            'jenis_kelamin_pasien' => $request->jenis_kelamin,
+        ]);
+
+        $perjanjian->save();
+
+        return redirect()->route('pasien.index')->with('success', 'Perjanjian berhasil dibuat');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Perjanjian  $perjanjian
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Perjanjian $perjanjian)
+    {
+        return view('pasien.index', compact('perjanjian'));
+        // Logika untuk menampilkan detail perjanjian
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        // Ambil data perjanjian berdasarkan id
+        $perjanjian = Perjanjian::findOrFail($id);
+
+        // Kirim data perjanjian ke tampilan untuk diedit
+        return view('admin-pasien.edit', compact('perjanjian'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Perjanjian  $perjanjian
+     * @return \Illuminate\Http\Response
+     */
+    public function update(PerjanjianRequest $request, Perjanjian $perjanjian)
+    {
+        // Validasi data yang diterima melalui objek Request
+        $validatedData = $request->validated();
+
+        // Update data perjanjian
+        $perjanjian->update($validatedData);
+
+        return redirect()->route('pasien.index')->with('success', 'Perjanjian berhasil diperbarui.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Perjanjian  $perjanjian
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Perjanjian $perjanjian)
+    {
+        // Hapus perjanjian dari database
+        $perjanjian->delete();
+
+        return redirect()->route('pasien.index')->with('success', 'Perjanjian berhasil dihapus.');
+    }
 }

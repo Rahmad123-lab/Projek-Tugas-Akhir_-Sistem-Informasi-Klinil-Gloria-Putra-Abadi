@@ -1,6 +1,5 @@
 @extends('layouts.main')
 
-
 @section('content')
 <!-- Main Content -->
 <div id="content">
@@ -28,7 +27,6 @@
                                                document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
           </a>
-
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
           </form>
@@ -37,6 +35,7 @@
     </ul>
   </nav>
   <!-- End of Topbar -->
+
   <!-- Begin Page Content -->
   <div class="container-fluid">
     <!-- Page Heading -->
@@ -44,8 +43,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h5 class="font-weight-bold text-primary">Biodata Dokter
-        </h5>
+        <h5 class="font-weight-bold text-primary">Biodata Dokter</h5>
       </div>
       <div class="card-body">
         <form method="POST" action="{{ route('admin-dokter.store') }}" enctype="multipart/form-data">
@@ -63,8 +61,7 @@
           <div class="form-group">
             <label for="alamat_dokter">Alamat</label>
             <textarea name="alamat_dokter" id="alamat_dokter"
-              class="form-control @error('alamat_dokter') is-invalid @enderror" id="exampleFormControlTextarea1"
-              rows="3">{{ old('alamat_dokter') }}</textarea>
+              class="form-control @error('alamat_dokter') is-invalid @enderror" rows="3">{{ old('alamat_dokter') }}</textarea>
             @error('alamat_dokter')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -74,12 +71,22 @@
           <div class="form-group">
             <label for="spesialisasi_dokter">Spesialisasi</label>
             <select name="spesialisasi_dokter" id="spesialisasi_dokter"
-              class="form-control @error('spesialisasi_dokter') is-invalid @enderror" id="role">
-              <option value="Poli Umum" selected>Poli Umum</option>
-              <option value="Poli Anak">Poli Anak</option>
-              <option value="Poli Lansia">Poli Lansia</option>
+              class="form-control @error('spesialisasi_dokter') is-invalid @enderror">
+              <option value="Poli Umum" {{ old('spesialisasi_dokter') == 'Poli Umum' ? 'selected' : '' }}>Poli Umum</option>
+              <option value="Poli Anak" {{ old('spesialisasi_dokter') == 'Poli Anak' ? 'selected' : '' }}>Poli Anak</option>
+              <option value="Poli Lansia" {{ old('spesialisasi_dokter') == 'Poli Lansia' ? 'selected' : '' }}>Poli Lansia</option>
             </select>
             @error('spesialisasi_dokter')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+          <div class="form-group">
+            <label for="jadwal_dokter">Jadwal Dokter</label>
+            <input type="text" class="form-control @error('jadwal_dokter') is-invalid @enderror" id="jadwal_dokter"
+              name="jadwal_dokter" placeholder="Jadwal Dokter" value="{{ old('jadwal_dokter') }}">
+            @error('jadwal_dokter')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>

@@ -38,9 +38,16 @@
   <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800 font-weight-bold">
-        Selamat Datang, {{ Auth::user()->name }}!
-      </h1>
+        @if (Auth::user()->role == 'pasien')
+          <h1 class="h3 mb-0 text-gray-800 font-weight-bold">
+            {{ Auth::user()->name }}! Bagaimana kondisi kesehatanmu?
+          </h1>
+        @else
+          <h1 class="h3 mb-0 text-gray-800 font-weight-bold">
+            Selamat Datang, {{ Auth::user()->name }}!
+          </h1>
+        @endif
+      </div>
       {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
     </div>
@@ -76,7 +83,7 @@
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                   {{ $perjanjians->count() }}
                 </div>
-                @elseif (Auth::user()->role == 'admin')
+                @elseif (Auth::user()->role == 'admin' && $perjanjians->count())
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                   {{ $pasien }}
                 </div>
@@ -140,14 +147,6 @@
                     <th>Waktu Perjanjian</th>
                   </tr>
                 </thead>
-                <tfoot>
-                  <tr>
-                    <th>Nama Pasien</th>
-                    <th>Nama Dokter</th>
-                    <th>Spesialisasi Dokter</th>
-                    <th>Waktu Perjanjian</th>
-                  </tr>
-                </tfoot>
                 <tbody>
                   @foreach ($perjanjians as $perjanjian)
                   <tr>

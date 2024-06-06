@@ -55,13 +55,6 @@
                 <th>Harga Obat</th>
               </tr>
             </thead>
-            <tfoot>
-              <tr>
-                <th>Nama Obat</th>
-                <th>Jumlah Obat</th>
-                <th>Harga Obat</th>
-              </tr>
-            </tfoot>
             <tbody>
               @foreach ($obats as $obat)
               <tr>

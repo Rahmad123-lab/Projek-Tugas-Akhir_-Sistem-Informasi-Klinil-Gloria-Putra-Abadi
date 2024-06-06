@@ -3,97 +3,60 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Dokter\DokterRequest;
-use App\Models\Dokter;
 use Illuminate\Http\Request;
+use App\Models\Dokter;
 
 class AdminDokterController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function index()
-  {
-    $dokter = Dokter::all();
-    $data = [
-      'dokters' => $dokter
-    ];
-    return view('admin.dokter.index', $data);
-  }
+    public function index()
+    {
+        $dokters = Dokter::all();
+        return view('admin.dokter.index', compact('dokters'));
+    }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
-  {
-    return view('admin.dokter.create');
-  }
+    public function create()
+    {
+        return view('admin.dokter.create');
+    }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(DokterRequest $request)
-  {
-    $validatedData = $request->all();
-    $dokter = Dokter::create($validatedData);
-    return redirect()->route('admin-dokter.index');
-  }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama_dokter' => 'required|string|max:255',
+            'alamat_dokter' => 'required|string|max:255',
+            'spesialisasi_dokter' => 'required|string|max:255',
+            'jadwal_dokter' => 'nullable|string|max:255',
+        ]);
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\Dokter  $dokter
-   * @return \Illuminate\Http\Response
-   */
-  public function show(Dokter $admin_dokter)
-  {
-    //
-  }
+        Dokter::create([
+            'nama_dokter' => $request->nama_dokter,
+            'alamat_dokter' => $request->alamat_dokter,
+            'spesialisasi_dokter' => $request->spesialisasi_dokter,
+            'jadwal_dokter' => $request->jadwal_dokter,
+            'id_user' => auth()->id(),
+        ]);
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\Dokter  $dokter
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(Dokter $admin_dokter)
-  {
-    $data = [
-      'dokter' => $admin_dokter
-    ];
-    return view('admin.dokter.edit', $data);
-  }
+        return redirect()->route('admin-dokter.index')->with('success', 'Dokter berhasil ditambahkan.');
+    }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Dokter  $dokter
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, Dokter $admin_dokter)
-  {
-    $validatedData = $request->all();
-    $admin_dokter->update($validatedData);
-    return redirect()->route('admin-dokter.index');
-  }
+    public function edit($id)
+    {
+        $dokter = Dokter::findOrFail($id);
+        return view('admin.dokter.edit', compact('dokter'));
+    }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Models\Dokter  $dokter
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy(Dokter $admin_dokter)
-  {
-    $admin_dokter->delete();
-    return redirect()->route('admin-dokter.index');
-  }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_dokter' => 'required|string|max:255',
+            'alamat_dokter' => 'required|string|max:255',
+            'spesialisasi_dokter' => 'required|string|max:255',
+            'jadwal_dokter' => 'nullable|string|max:255',
+        ]);
+
+        $dokter = Dokter::findOrFail($id);
+        $dokter->update($request->all());
+
+        return redirect()->route('admin-dokter.index')->with('success', 'Data dokter berhasil diperbarui.');
+    }
 }

@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             [
-                'name' => 'Admin User',
+                'name' => 'Administrator ',
                 'email' => 'admin@gmail.com',
                 'password' => $defaultPassword,
                 'role' => 'admin',
@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Pasien User',
+                'name' => 'Pasien',
                 'email' => 'pasien@gmail.com',
                 'password' => $defaultPassword,
                 'role' => 'pasien',
@@ -67,7 +67,7 @@ class UsersSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Dr.Sudomo',
+                'name' => 'Dr.Sudomo Colombus Situmorang, S.Farm',
                 'email' => 'doktersudomo@gmail.com',
                 'password' => $defaultPassword,
                 'role' => 'dokter',

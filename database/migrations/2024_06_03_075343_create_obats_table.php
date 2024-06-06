@@ -12,17 +12,16 @@ class CreateObatsTable extends Migration
    * @return void
    */
   public function up()
-  {
+{
     Schema::create('obats', function (Blueprint $table) {
-      $table->bigIncrements('id');
-      $table->string('nama_obat');
-      $table->integer('jumlah_obat');
-      $table->integer('harga_obat');
-      // $table->unsignedBigInteger('pasien_id')->nullable();
-      // $table->foreign('pasien_id')->references('id')->on('pasiens')->onDelete('cascade');
-      $table->timestamps();
+        $table->id();
+        $table->string('nama_obat');
+        $table->string('harga_obat');
+        $table->integer('jumlah_obat')->default(0); // Set default value
+        $table->timestamps();
     });
-  }
+}
+
 
   /**
    * Reverse the migrations.

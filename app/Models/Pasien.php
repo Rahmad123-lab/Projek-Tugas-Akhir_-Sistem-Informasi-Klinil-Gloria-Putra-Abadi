@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -7,25 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pasien extends Model
 {
-  use HasFactory;
-  protected $guarded = ['id'];
-  public $timestamps = true;
+    protected $guarded = ['id'];
+    public $timestamps = true;
+    use HasFactory;
+
     protected $fillable = [
-    'nama_pasien',
-    'nama_dokter',
-    'spesialiasi_dokter',
-    'id_dokter',
-    'waktu_perjanjian',
-    'pasien_id',
-  ];
+        'nama_pasien', 'alamat_pasien', 'nik', 'tgl_datang', 'keluhan_pasien', 'diagnosa_pasien', 'dokter_id', 'obat_id'
+    ];
 
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'dokter_id');
+    }
 
-  public function dokter()
-  {
-    return $this->belongsTo(Dokter::class);
-  }
-  public function obats()
-  {
-    return $this->hasMany(Obat::class);
-  }
+    public function obat()
+    {
+        return $this->belongsTo(Obat::class, 'obat_id');
+    }
+
+    public function perjanjian()
+    {
+        return $this->hasMany(Perjanjian::class, 'pasien_id');
+    }
 }

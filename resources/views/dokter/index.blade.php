@@ -36,12 +36,10 @@
     </ul>
   </nav>
   <!-- End of Topbar -->
-
   <!-- Begin Page Content -->
   <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Daftar Pasien Spesialis Jantung</h1>
-    <p class="mb-4">Daftar pasien yang terdaftar ke dokter spesialis jantung</p>
+    <h1 class="h3 mb-2 text-gray-800">Daftar Pasien</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -50,7 +48,7 @@
       <div class="card-body">
         @if($perjanjian->isEmpty())
           <div class="alert alert-info">
-            Tidak ada pasien yang terdaftar ke spesialis jantung.
+            Anda Belum memiliki Pasien.
           </div>
         @else
           <div class="table-responsive">
@@ -65,25 +63,46 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($perjanjian as $data)
-                  @if ($data->spesialiasi_dokter == 'Jantung')
+                @foreach ($perjanjian as $pasien)
+                  @if(in_array($pasien->spesialiasi_dokter, ['Poli Umum', 'Poli Anak', 'Poli Lansia']))
                     <tr>
-                      <td>{{ $data->nama_pasien }}</td>
-                      <td>{{ $data->nama_dokter }}</td>
-                      <td>{{ $data->spesialiasi_dokter }}</td>
-                      <td>{{ $data->waktu_perjanjian }}</td>
+                      <td>{{ $pasien->nama_pasien }}</td>
+                      <td>{{ $pasien->nama_dokter }}</td>
+                      <td>{{ $pasien->spesialiasi_dokter }}</td>
+                      <td>{{ $pasien->waktu_perjanjian }}</td>
                       <td>
-                        <span>
-                          <a href="{{ route('pasien.edit', $data->id) }}" class="btn btn-warning">Edit</a>
+                        @if(Auth::user()->role == 'apoteker')
+                          <span>
+                            <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-success">
+                              Info
+                            </a>
+                          </span>
+                        @elseif(Auth::user()->role =='admin')
+                        <Span>
+                            <a href="{{ route('pasien.show'), $pasien->id }}" class="btn btn-success">
+                                Info
+                            </a>
                         </span>
-                        <span>
-                          <a href="{{ route('pasien.show', $data->id) }}" class="btn btn-success">Info</a>
-                        </span>
-                        <form action="{{ route('pasien.destroy', $data->id) }}" method="post" style="display:inline;">
-                          @method('delete')
-                          @csrf
-                          <span><button onclick="return confirm('Are you sure?')" class="btn btn-danger" type="submit">Hapus</button></span>
-                        </form>
+                        @else
+                          <span>
+                            <a href="{{ route('pasien.edit', $pasien->id) }}" class="btn btn-warning">
+                              Edit
+                            </a>
+                          </span>
+                          <span>
+                            <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-success">
+                              Info
+                            </a>
+                          </span>
+                          <form action="{{ route('pasien.destroy', $pasien->id) }}" method="post">
+                            @method('delete')
+                            @csrf
+                            <span>
+                              <button onclick="return confirm('Are you sure?')" class="btn btn-danger d-block"
+                                type="submit">Hapus</button>
+                            </span>
+                          </form>
+                        @endif
                       </td>
                     </tr>
                   @endif
