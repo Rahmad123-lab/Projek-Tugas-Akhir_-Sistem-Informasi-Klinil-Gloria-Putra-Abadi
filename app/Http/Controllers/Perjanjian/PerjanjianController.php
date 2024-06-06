@@ -17,22 +17,18 @@ class PerjanjianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-{
-    // Ambil dokter yang sedang login
-    $user = auth()->user();
-    $dokter = $user->dokter;
+    {
+        $user = auth()->user();
+        $dokter = $user->dokter;
 
-    // Ambil semua perjanjian yang terkait dengan dokter yang sedang login
-    if ($dokter) {
-        $perjanjians = Perjanjian::where('dokter_id', $dokter->id)->get();
-    } else {
-        // Jika bukan dokter yang login, tampilkan semua perjanjian atau sesuai dengan logika lain
-        $perjanjians = Perjanjian::all();
+        if ($dokter) {
+            $perjanjians = Perjanjian::where('dokter_id', $dokter->id)->get();
+        } else {
+            $perjanjians = Perjanjian::all();
+        }
+
+        return view('pasien.index', compact('perjanjians'));
     }
-
-    // Kirim data perjanjian ke tampilan
-    return view('pasien.index', compact('perjanjians'));
-}
 
 
 
@@ -92,12 +88,12 @@ class PerjanjianController extends Controller
      * @param  \App\Models\Perjanjian  $perjanjian
      * @return \Illuminate\Http\Response
      */
-    public function show(Perjanjian $perjanjian)
+    public function show($id)
     {
-        $perjanjian = Perjanjian::findOrFail();
-        $obat = Obat::find($perjanjian->resep_obat);
-        return view('pasien.index', compact('perjanjian', 'obat'));
-        // Logika untuk menampilkan detail perjanjian
+        $perjanjian = Perjanjian::findOrFail($id);
+        $obat = Obat::find($perjanjian->resep_obat); // Pastikan 'resep_obat' adalah kolom yang menyimpan ID obat
+
+        return view('pasien.show', compact('perjanjian', 'obat'));
     }
 
     /**

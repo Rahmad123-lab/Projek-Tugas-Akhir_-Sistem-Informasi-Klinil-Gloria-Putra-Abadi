@@ -39,6 +39,10 @@ class Perjanjian extends Model
     {
         return $this->belongsTo(Dokter::class, 'dokter_id');
     }
+    public function obat()
+    {
+        return $this->belongsTo(Obat::class, 'resep_obat');
+    }
 
     public function apoteker()
     {

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Obat;
 use Illuminate\Support\Facades\App;
-use PDF;
+use Barryvdh\DomPDF\PDF;
 
 class PasienController extends Controller
 {
@@ -133,17 +133,16 @@ public function index()
     return redirect()->route('pasien.index');
   }
 
-  public function generatePDF(Pasien $pasien)
-  {
+public function generatePDF(Pasien $pasien)
+{
     $dataPasien = Pasien::with('dokter')->where('nama_pasien', $pasien->nama_pasien)->get();
     $data = [
-      'pasiens' => $dataPasien
+        'pasiens' => $dataPasien
     ];
-    return view('cetak-pasien', $data);
-    dd($dataPasien);
-    $data = $dataPasien;
-    view()->share('pasiens', $data);
+
     $pdf = PDF::loadView('cetak-pasien', $data);
+
     return $pdf->download($pasien->nama_pasien . '.pdf');
-  }
+}
+
 }

@@ -44,7 +44,7 @@
                 <td>{{ $pasien->keluhan_pasien }}</td>
                 <td>{{ $pasien->diagnosa_pasien }}</td>
                 <td>{{ $pasien->nama_dokter }}</td>
-                <td>{{ $pasien->nama_obat }}</td>
+                <td>{{ $pasien->resep_obat }}</td>
               </tr>
             </tbody>
           </table>
