@@ -31,6 +31,7 @@
                 <th>Alamat Pasien</th>
                 <th>Tanggal Berobat</th>
                 <th>Keluhan</th>
+                <th>Diagnosa</th>
                 <th>Nama Dokter</th>
                 <th>Obat</th>
               </tr>
@@ -41,6 +42,7 @@
                 <td>{{ $pasien->alamat_pasien }}</td>
                 <td>{{ $pasien->created_at->format('d/m/Y') }}</td> <!-- Display date of registration -->
                 <td>{{ $pasien->keluhan_pasien }}</td>
+                <td>{{ $pasien->diagnosa_pasien }}</td>
                 <td>{{ $pasien->nama_dokter }}</td>
                 <td>{{ $pasien->nama_obat }}</td>
               </tr>

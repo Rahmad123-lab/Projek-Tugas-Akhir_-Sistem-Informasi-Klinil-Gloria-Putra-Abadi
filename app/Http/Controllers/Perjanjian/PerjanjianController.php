@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Perjanjian\PerjanjianRequest;
 use App\Models\Dokter;
+use App\Models\Obat;
 
 class PerjanjianController extends Controller
 {
@@ -93,7 +94,9 @@ class PerjanjianController extends Controller
      */
     public function show(Perjanjian $perjanjian)
     {
-        return view('pasien.index', compact('perjanjian'));
+        $perjanjian = Perjanjian::findOrFail();
+        $obat = Obat::find($perjanjian->resep_obat);
+        return view('pasien.index', compact('perjanjian', 'obat'));
         // Logika untuk menampilkan detail perjanjian
     }
 

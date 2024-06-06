@@ -27,7 +27,7 @@ class CreatePerjanjiansTable extends Migration
             $table->string('riwayat_alergi')->nullable();
             $table->date('tanggal_pemeriksaan')->nullable();
             $table->string('keluhan_pasien')->nullable();
-            $table->string('diagnosis')->nullable();
+            $table->string('diagnosa_pasien')->nullable();
             $table->string('terapis')->nullable();
             $table->unsignedBigInteger('obat_id')->nullable(); // Menambah kolom obat_id
             $table->string('resep_obat')->nullable();

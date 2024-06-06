@@ -23,8 +23,8 @@ class Perjanjian extends Model
         'alamat_pasien',
         'riwayat_alergi',
         'tanggal_pemeriksaan',
-        'keluhan',
-        'diagnosis',
+        'keluhan_pasien',
+        'diagnosa_pasien',
         'terapis',
         'resep_obat',
     ];
