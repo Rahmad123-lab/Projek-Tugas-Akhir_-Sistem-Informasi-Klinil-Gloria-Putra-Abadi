@@ -13,4 +13,9 @@ class Obat extends Model
     {
     return $this->belongsTo(Pasien::class);
     }
+
+    public function perjanjian()
+    {
+        return $this->belongsTo(Perjanjan::class);
+    }
 }

@@ -40,14 +40,14 @@
             <textarea class="form-control" id="diagnosa_pasien" rows="3" name="diagnosa_pasien">{{ $model->diagnosa_pasien }}</textarea>
           </div>
           <div class="form-group">
-            <label for="obat_id">Obat</label>
-            <select class="form-control" id="obat_id" name="obat_id">
-              @foreach ($obats as $obat)
-                <option value="{{ $obat->id }}">{{ $obat->nama_obat }}</option>
-              @endforeach
+            <label for="resep_obat">Obat</label>
+            <select class="form-control" id="resep_obat" name="resep_obat">
+                @foreach ($obats as $obat)
+                    <option value="{{ $obat->nama_obat }}" {{ $model->resep_obat == $obat->nama_obat ? 'selected' : '' }}>{{ $obat->nama_obat }}</option>
+                @endforeach
             </select>
-          </div>
-          <button type="submit" class="btn btn-info">Tambah</button>
+        </div>
+          <button type="submit" class="btn btn-info">Update</button>
         </form>
       </div>
     </div>

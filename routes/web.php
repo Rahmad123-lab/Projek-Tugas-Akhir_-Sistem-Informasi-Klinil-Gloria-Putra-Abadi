@@ -70,3 +70,4 @@ Route::resource('admin-dokter', AdminDokterController::class)->middleware('check
 Route::post('/admin-dokter/store', [AdminDokterController::class, 'store'])->name('admin-dokter.store');
 Route::post('/dokter', [DokterController::class, 'store'])->name('admin.dokter.store');
 Route::post('/perjanjian', [PerjanjianController::class, 'store'])->name('perjanjian.store');
+Route::get('/generate-pdf/{pasien}', [PasienController::class, 'generatePDF'])->name('generatePDF')->middleware('checkRole:dokter,admin,apoteker');

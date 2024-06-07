@@ -11,7 +11,7 @@ class Pasien extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_pasien', 'alamat_pasien', 'nik', 'tgl_datang', 'keluhan_pasien', 'diagnosa_pasien', 'dokter_id', 'obat'
+        'nama_pasien', 'alamat_pasien', 'nik', 'tgl_datang', 'keluhan_pasien', 'diagnosa_pasien', 'dokter_id', 'resep_obat'
     ];
 
     public function dokter()
@@ -21,7 +21,7 @@ class Pasien extends Model
 
     public function obat()
     {
-        return $this->belongsTo(Obat::class, 'obat_id');
+        return $this->belongsTo(Obat::class, 'resep_obat');
     }
 
     public function perjanjian()

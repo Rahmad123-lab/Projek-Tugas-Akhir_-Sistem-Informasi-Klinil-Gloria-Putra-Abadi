@@ -10,7 +10,8 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Data Pasien Anda</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Data Pasien sdsaAnda</h6>
+        <br>
       </div>
       <div class="card-body">
         @if($perjanjian->isEmpty())
@@ -42,7 +43,7 @@
                       @elseif(Auth::user()->role =='admin')
                         <a href="{{ route('pasien.show', $perjanjianItem->id) }}" class="btn btn-success">Info</a>
                       @else
-                        <a href="{{ route('pasien.edit', $perjanjianItem->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('pasien.edit', $perjanjianItem->id) }}" class="btn btn-warning">Periksa</a>
                         <a href="{{ route('pasien.show', $perjanjianItem->id) }}" class="btn btn-success">Info</a>
                         <form action="{{ route('pasien.destroy', $perjanjianItem->id) }}" method="post">
                           @method('delete')

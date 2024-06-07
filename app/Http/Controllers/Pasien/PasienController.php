@@ -24,11 +24,19 @@ class PasienController extends Controller
   // Di dalam controller, pastikan Anda melewatkan data ke tampilan dengan menggunakan variabel $pasiens
 public function index()
 {
-    // Ambil data pasien dari database
-    $pasiens = Perjanjian::with('pasien')->where('pasien_id', Auth::user()->id)->get();
+    if (Auth::user()->role == 'admin') {
+        // Jika admin, ambil semua perjanjian
+        $perjanjians = Perjanjian::with('pasien', 'dokter')->get();
+    } else if (Auth::user()->role == 'dokter') {
+        // Jika dokter, ambil perjanjian yang berhubungan dengan dokter tersebut
+        $perjanjians = Perjanjian::with('pasien', 'dokter')->where('dokter_id', Auth::user()->id)->get();
+    } else {
+        // Jika pasien, ambil perjanjian yang berhubungan dengan pasien tersebut
+        $perjanjians = Perjanjian::with('pasien')->where('pasien_id', Auth::user()->id)->get();
+    }
 
     // Kirim data ke view
-    return view('pasien.index', ['pasiens' => $pasiens]);
+    return view('pasien.index', ['perjanjians' => $perjanjians]);
 }
 
 
@@ -116,7 +124,8 @@ public function index()
     $model = Perjanjian::find($id);
     $model->dokter_id = $request->dokter_id;
     $model->keluhan_pasien = $request->keluhan_pasien;
-    $model->obat_id = $request->obat_id;
+    $model->diagnosa_pasien = $request->diagnosa_pasien;
+    $model->resep_obat= $request->resep_obat;
     $model->save();
     return redirect()->route('dokter.index');
   }
