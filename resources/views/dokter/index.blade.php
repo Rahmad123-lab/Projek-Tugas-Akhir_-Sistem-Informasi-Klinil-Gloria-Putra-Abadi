@@ -48,7 +48,7 @@
                         <form action="{{ route('pasien.destroy', $perjanjianItem->id) }}" method="post">
                           @method('delete')
                           @csrf
-                          <button onclick="return confirm('Are you sure?')" class="btn btn-danger d-block" type="submit">Hapus</button>
+                          <button onclick="return confirm('apakah kamu ingin hapus rekam medis ini?')" class="btn btn-danger d-block" type="submit">Hapus</button>
                         </form>
                       @endif
                     </td>

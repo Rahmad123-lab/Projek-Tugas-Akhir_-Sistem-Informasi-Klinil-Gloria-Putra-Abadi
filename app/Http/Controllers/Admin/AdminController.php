@@ -16,12 +16,12 @@ class AdminController extends Controller
    */
   public function index()
   {
-    $user = User::all();
+    $users = User::with('appointments')->get(); // Eager load appointments
     $data = [
-      'users' => $user
+        'users' => $users
     ];
-    return view('admin.pasien.index', $data);
-  }
+    return view('dokter.index', $data);
+}
 
   /**
    * Show the form for creating a new resource.
