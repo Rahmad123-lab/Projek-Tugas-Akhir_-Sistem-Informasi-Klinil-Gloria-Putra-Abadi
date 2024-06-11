@@ -83,7 +83,7 @@
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                   {{ $perjanjians->count() }}
                 </div>
-                @elseif (Auth::user()->role == 'admin' && $perjanjians->count())
+                @elseif ((Auth::user()->role == 'admin' || Auth::user()->role == 'apoteker') && $perjanjians->count())
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                   {{ $pasien }}
                 </div>
@@ -130,10 +130,10 @@
       <!-- Area Chart -->
       <div class="col-xl-12 col-lg-12">
         <div class="card shadow mb-4">
-          @if (Auth::user()->role == 'dokter' && $perjanjians->count())
+          @if ((Auth::user()->role == 'dokter' && $perjanjians->count()) || (Auth::user()->role == 'admin' || Auth::user()->role == 'apoteker'))
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Perjanjian dengan pasien</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Perjanjian dengan Pasien</h6>
           </div>
           <!-- Card Body -->
           <div class="card-body">
@@ -143,7 +143,7 @@
                   <tr>
                     <th>Nama Pasien</th>
                     <th>Nama Dokter</th>
-                    <th>Spesialisasi Dokter</th>
+                    <th>Spesialisasi</th>
                     <th>Waktu Perjanjian</th>
                   </tr>
                 </thead>
@@ -152,7 +152,7 @@
                   <tr>
                     <td>{{ $perjanjian->nama_pasien }}</td>
                     <td>{{ $perjanjian->nama_dokter }}</td>
-                    <td>{{ $perjanjian->spesialiasi_dokter }}</td>
+                    <td>{{ $perjanjian->dokter->spesialisasi_dokter }}
                     <td>{{ $perjanjian->waktu_perjanjian }}</td>
                   </tr>
                   @endforeach

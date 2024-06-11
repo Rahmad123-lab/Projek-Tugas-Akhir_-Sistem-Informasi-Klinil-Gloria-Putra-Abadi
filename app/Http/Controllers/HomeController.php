@@ -27,17 +27,26 @@ class HomeController extends Controller
    * @return \Illuminate\Contracts\Support\Renderable
    */
   public function index()
-  {
-    $pasien = Pasien::all()->collect()->count();
-    $dokter = Dokter::all()->collect()->count();
-    $obat =  Obat::all()->collect()->count();
-    $perjanjian = Perjanjian::where('nama_dokter', Auth::user()->name)->get();
+{
+    $pasien = Pasien::count();
+    $dokter = Dokter::count();
+    $obat = Obat::count();
+
+    $user = Auth::user();
+    if ($user->role == 'dokter') {
+        $perjanjian = Perjanjian::where('nama_dokter', $user->name)->get();
+    } else {
+        $perjanjian = Perjanjian::all();
+    }
+
     $data = [
       'pasien' => $pasien,
       'dokter' => $dokter,
       'obat' => $obat,
       'perjanjians' => $perjanjian
     ];
+
     return view('home', $data);
-  }
+}
+
 }

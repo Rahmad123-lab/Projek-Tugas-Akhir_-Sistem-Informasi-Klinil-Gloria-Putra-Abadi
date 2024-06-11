@@ -145,7 +145,7 @@
     </div>
 </div>
 <div class="qlwapp-icon qlwapp - whatsapp-icon">
-    <a href="https://wa.me/6282119695900?text=Halo%20Admin%20Klinik%20Unpad!%20Saya%20ingin%20menanyakan%20sesuatu" class="whatsapp-button" target="_blank">
+    <a href="https://wa.me/6285275380051?text=Halo%20Admin%20Klinik%20Unpad!%20Saya%20ingin%20menanyakan%20sesuatu" class="whatsapp-button" target="_blank">
         <i class="fa fa-whatsapp"></i> WhatsApp Call Center
       </a>
   </div>

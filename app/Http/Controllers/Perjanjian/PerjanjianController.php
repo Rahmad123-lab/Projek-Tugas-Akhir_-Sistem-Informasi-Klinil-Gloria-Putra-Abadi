@@ -21,10 +21,12 @@ class PerjanjianController extends Controller
         $user = auth()->user();
         $dokter = $user->dokter;
 
-        if ($dokter) {
+        if ($user->role === 'admin') {
+            $perjanjians = Perjanjian::all();
+        } elseif ($dokter) {
             $perjanjians = Perjanjian::where('dokter_id', $dokter->id)->get();
         } else {
-            $perjanjians = Perjanjian::all();
+            $perjanjians = Perjanjian::where('pasien_id', $user->id)->get(); // Asumsi pasien bisa melihat perjanjiannya sendiri
         }
 
         return view('pasien.index', compact('perjanjians'));
@@ -58,7 +60,7 @@ class PerjanjianController extends Controller
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required|string|max:255',
             'nama_dokter' => 'required|exists:dokters,id',
-            'spesialiasi_dokter' => 'required|string',
+            'spesialisasi_dokter' => 'required|string',
             'waktu_perjanjian' => 'required|string',
         ]);
 
@@ -69,7 +71,7 @@ class PerjanjianController extends Controller
             'pasien_id' => $request->pasien_id,
             'dokter_id' => $request->nama_dokter,
             'nama_dokter' => $dokter->nama_dokter,
-            'spesialiasi_dokter' => $dokter->spesialisasi_dokter,
+            'spesialisasi_dokter' => $dokter->spesialisasi_dokter,
             'waktu_perjanjian' => $request->waktu_perjanjian,
             'umur_pasien' => $request->umur,
             'alamat_pasien' => $request->alamat,

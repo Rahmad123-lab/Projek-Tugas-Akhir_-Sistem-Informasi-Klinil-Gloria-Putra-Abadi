@@ -6,7 +6,7 @@ use App\Http\Controllers\Dokter\DokterController;
 use App\Http\Controllers\Obat\ObatController;
 use App\Http\Controllers\Pasien\PasienController;
 use App\Http\Controllers\Perjanjian\PerjanjianController;
-use App\Http\Controllers\JadwalDokterController;
+use App\Http\Controllers\JadwalDokterNewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +28,7 @@ Route::get('/tentang', function() {
     return view('frontend.tentang');
 });
 
-Route::get('/kontak', function() {
+Route::get('/Kontak', function() {
     return view('frontend.contact');
 });
 
@@ -64,8 +64,16 @@ Route::resource('jadwal-dokter', JadwalDokterController::class);
 // Specific Routes
 Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
 Route::get('/admin-dokter', [AdminDokterController::class, 'index'])->name('admin-dokter.index');
+Route::get('/admin-dokter/jadwal', [DokterController::class, 'jadwal'])->name('admin-dokter.jadwal');
 Route::resource('admin-dokter', AdminDokterController::class)->middleware('checkRole:admin,apoteker');
 
+// Route::prefix('admin-dokter')->group(function () {
+//     Route::get('jadwal', [DokterJadwalController::class, 'index'])->name('admin-dokter.jadwal');
+//     Route::post('jadwal', [DokterJadwalController::class, 'store'])->name('jadwal-dokter.store');
+//     Route::get('jadwal/{id}/edit', [DokterJadwalController::class, 'edit'])->name('jadwal-dokter.edit');
+//     Route::put('jadwal/{id}', [DokterJadwalController::class, 'update'])->name('jadwal-dokter.update');
+//     Route::delete('jadwal/{id}', [DokterJadwalController::class, 'destroy'])->name('jadwal-dokter.destroy');
+// });
 // Additional Store Routes
 Route::post('/admin-dokter/store', [AdminDokterController::class, 'store'])->name('admin-dokter.store');
 Route::post('/dokter', [DokterController::class, 'store'])->name('admin.dokter.store');

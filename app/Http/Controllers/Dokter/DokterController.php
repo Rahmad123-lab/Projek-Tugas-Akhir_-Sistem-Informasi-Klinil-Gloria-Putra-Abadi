@@ -114,4 +114,11 @@ class DokterController extends Controller
   {
     //
   }
+  public function jadwal()
+    {
+        // Retrieve the necessary data
+        // For example, retrieve schedule data for doctors
+
+        return view('admin.dokter.jadwal'); // Ensure this view exists
+    }
 }

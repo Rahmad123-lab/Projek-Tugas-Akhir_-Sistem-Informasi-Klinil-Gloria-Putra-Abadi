@@ -28,7 +28,7 @@ class PerjanjianRequest extends FormRequest
       'pasien_id' => 'required|exists:pasiens,id',
       'dokter_id' => 'required|exists:dokters,id',
       'nama_dokter' => 'required|string|max:255',
-      'spesialiasi_dokter' => 'required|string|max:255',
+      'spesialisasi_dokter' => 'required|string|max:255',
       'waktu_perjanjian' => 'required|string|max:255',
       'umur_pasien' => 'required|integer',
       'alamat_pasien' => 'required|string|max:255',

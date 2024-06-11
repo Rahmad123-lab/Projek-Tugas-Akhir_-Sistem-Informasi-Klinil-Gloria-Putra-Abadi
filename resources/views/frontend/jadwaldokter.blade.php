@@ -69,7 +69,7 @@
     <!-- End Main Header -->
 
     <!-- Page Content -->
-    <section class="page-title text-center" style="background-image:url(images/banner.jpg);">
+    <section class="page-title text-center" style="background-image:url(images/slider/slider-bg-1.jpg);">
       <div class="container">
         <div class="title-text">
           <h1>Jadwal Dokter</h1>
@@ -82,7 +82,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="content text-center">
-              <h2 class="mb-5">Jadwal Praktek Dokter</h2>
+              {{-- <h2 class="mb-5">Jadwal Praktek Dokter</h2> --}}
               <p>Berikut adalah jadwal praktek dokter di Klinik Gloria Putra Abadi:</p>
               <table class="table table-bordered table-hover">
                 <thead>
@@ -94,7 +94,6 @@
                   </tr>
                 </thead>
                 <tbody>
-                  
                 </tbody>
               </table>
             </div>

@@ -58,11 +58,11 @@
               </thead>
               <tbody>
                 @foreach ($perjanjian as $pasien)
-                  @if(in_array($data->spesialiasi_dokter, ['Poli Umum', 'Poli Anak', 'Poli Lansia']))
+                  @if(in_array($data->spesialisasi_dokter, ['Poli Umum', 'Poli Anak', 'Poli Lansia']))
                     <tr>
                       <td>{{ $data->nama_pasien }}</td>
                       <td>{{ $data->nama_dokter }}</td>
-                      <td>{{ $data->spesialiasi_dokter }}</td>
+                      <td>{{ $data->spesialisasi_dokter }}</td>
                       <td>{{ $data->waktu_perjanjian }}</td>
                       <td>
                         @if(Auth::user()->role == 'apoteker')

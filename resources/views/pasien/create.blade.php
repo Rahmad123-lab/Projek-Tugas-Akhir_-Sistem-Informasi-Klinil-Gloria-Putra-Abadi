@@ -138,8 +138,8 @@
 
                     <!-- Spesialisasi Dokter -->
                     <div class="form-gr oup">
-                        <label for="spesialiasi_dokter">Spesialisasi Dokter</label>
-                        <select class="form-control" id="spesialiasi_dokter" name="spesialiasi_dokter">
+                        <label for="spesialisasi_dokter">Spesialisasi Dokter</label>
+                        <select class="form-control" id="spesialisasi_dokter" name="spesialisasi_dokter">
                         <option> Pilih salah satu</option>
                         @foreach ($dokters as $dokter)
                         <option value="{{ $dokter->spesialisasi_dokter }}">{{ $dokter->spesialisasi_dokter }}</option>

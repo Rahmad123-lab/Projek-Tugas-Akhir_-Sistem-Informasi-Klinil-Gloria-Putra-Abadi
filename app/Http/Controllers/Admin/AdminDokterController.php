@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dokter;
+use App\Models\JadwalDokterNew;
 
 class AdminDokterController extends Controller
 {
@@ -18,6 +19,8 @@ class AdminDokterController extends Controller
     {
         return view('admin.dokter.create');
     }
+
+
 
     public function store(Request $request)
     {
@@ -47,9 +50,6 @@ class AdminDokterController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Debugging untuk melihat input yang diterima
-        dd($request->all());
-
         $request->validate([
             'nama_dokter' => 'required|string|max:255',
             'alamat_dokter' => 'nullable|string',
@@ -65,6 +65,4 @@ class AdminDokterController extends Controller
 
         return redirect()->route('admin-dokter.index')->with('success', 'Data dokter berhasil diperbarui');
     }
-
-
 }
