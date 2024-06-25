@@ -16,9 +16,7 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::get('/jadwaldokter', function() {
-    return view('frontend.jadwaldokter');
-});
+Route::get('/jadwaldokter', [JadwalDoktersController::class, 'index'])->name('frontend.jadwal.index');
 
 Route::get('/layanan', function() {
     return view('frontend.layanan');
@@ -60,26 +58,22 @@ Route::resource('admin', AdminController::class)->middleware('checkRole:admin,ap
 Route::resource('perjanjian', PerjanjianController::class)->middleware('checkRole:pasien,admin,apoteker');
 Route::resource('obat', ObatController::class)->middleware('checkRole:dokter,admin,apoteker');
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+// Jadwal Dokter Routes
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
     Route::resource('admin-jadwal', JadwalDoktersController::class);
-    // Route for showing the form to create a new schedule
+
+    Route::get('/admin-jadwal', [JadwalDoktersController::class, 'index'])->name('admin.jadwal.index');
     Route::get('/admin-jadwal/create', [JadwalDoktersController::class, 'create'])->name('admin.jadwal.create');
-
-    // Route for storing a new schedule
     Route::post('/admin-jadwal', [JadwalDoktersController::class, 'store'])->name('admin.jadwal.store');
-
-    // Route for editing a schedule
     Route::get('/admin-jadwal/{id}/edit', [JadwalDoktersController::class, 'edit'])->name('admin.jadwal.edit');
-
-    // Route for updating a schedule
     Route::put('/admin-jadwal/{id}', [JadwalDoktersController::class, 'update'])->name('admin.jadwal.update');
+    Route::delete('/admin-jadwal/{id}', 'JadwalDoktersController@destroy')->name('admin.jadwal.destroy');
 
-    // Specific Routes
+
     Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
     Route::get('/admin-dokter', [AdminDokterController::class, 'index'])->name('admin-dokter.index');
     Route::resource('admin-dokter', AdminDokterController::class)->middleware('checkRole:admin,apoteker');
 
-    // Additional Store Routes
     Route::get('/pasien/semua', [PasienController::class, 'showAll'])->name('pasien.all');
     Route::post('/admin-dokter/store', [AdminDokterController::class, 'store'])->name('admin-dokter.store');
     Route::post('/dokter', [DokterController::class, 'store'])->name('admin.dokter.store');

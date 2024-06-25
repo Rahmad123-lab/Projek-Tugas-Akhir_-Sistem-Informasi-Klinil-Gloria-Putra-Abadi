@@ -98,7 +98,7 @@
                             <h6 class="collapse-header"></h6>
                             <a class="collapse-item" href="{{ route('admin-dokter.index') }}">Daftar Dokter</a>
                             <a class="collapse-item" href="{{ route('admin-dokter.create') }}">Tambah Dokter</a>
-                            <a class="collapse-item" href="{{ route('admin-jadwal.index') }}">Kelola Jadwal Dokter</a>
+                            <a class="collapse-item" href="{{ route('admin.jadwal.index') }}">Kelola Jadwal Dokter</a>
                         </div>
                     </div>
                 </li>

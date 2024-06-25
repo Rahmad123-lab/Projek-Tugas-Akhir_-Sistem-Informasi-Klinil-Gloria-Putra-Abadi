@@ -7,18 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class JadwalDokters extends Model
 {
-    use HasFactory;
-
-    protected $fillable = [
-        'dokter_id',
-        'nama_dokter',
-        'spesialisasi',
-        'hari_praktek',
-        'jam_praktek',
-    ];
+    protected $fillable = ['nama_dokter', 'spesialisasi', 'hari', 'jam_praktek', 'dokter_id'];
 
     public function dokter()
     {
-        return $this->belongsTo(Dokter::class, 'dokter_id');
+        return $this->belongsTo(Dokter::class);
     }
 }
