@@ -23,6 +23,7 @@ class CreatePasiensTable extends Migration
             $table->date('tgl_datang')->nullable();
             $table->string('nama_obat')->nullable();
             $table->string('no_telp')->nullable();
+            $table->string('status')->nullable();
             $table->text('keluhan_pasien')->nullable();
             $table->unsignedBigInteger('dokter_id')->nullable();
             $table->unsignedBigInteger('obat_id')->nullable();

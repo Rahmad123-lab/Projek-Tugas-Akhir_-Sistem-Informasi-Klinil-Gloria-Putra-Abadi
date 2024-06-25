@@ -108,11 +108,6 @@ public function index()
    */
   public function update(Request $request, $id)
   {
-    // $validatedData = $request->all();
-    // $validatedData['tgl_datang'] = $pasien->tgl_datang;
-    // // return $validatedData;
-    // $pasien->update($validatedData);
-// dd($request->post());
     $model = Perjanjian::find($id);
     $model->dokter_id = $request->dokter_id;
     $model->keluhan_pasien = $request->keluhan_pasien;

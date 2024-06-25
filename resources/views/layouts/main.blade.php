@@ -35,186 +35,179 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('home') }}">
                     <i class="fas fa-chart-line"></i>
-                    <span>Aktivitas Saya</span></a>
+                    <span>Aktivitas Saya</span>
+                </a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
-
             <!-- Conditional Sidebar Items for Different Roles -->
             @if (Auth::user()->role == 'dokter')
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePasienDokter"
-                    aria-expanded="true" aria-controls="collapsePasienDokter">
-                    <i class="fas fa-user-injured"></i>
-                    <span>Pasien</span>
-                </a>
-                <div id="collapsePasienDokter" class="collapse" aria-labelledby="headingPasienDokter"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Action</h6>
-                        <a class="collapse-item" href="{{ route('dokter.index') }}">Daftar Pasien</a>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePasienDokter"
+                        aria-expanded="true" aria-controls="collapsePasienDokter">
+                        <i class="fas fa-user-injured"></i>
+                        <span>Pasien</span>
+                    </a>
+                    <div id="collapsePasienDokter" class="collapse" aria-labelledby="headingPasienDokter"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header"></h6>
+                            <a class="collapse-item" href="{{ route('dokter.index') }}">Daftar Pasien</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseObatDokter"
-                    aria-expanded="true" aria-controls="collapseObatDokter">
-                    <i class="fas fa-tablets"></i>
-                    <span>Obat</span>
-                </a>
-                <div id="collapseObatDokter" class="collapse" aria-labelledby="headingObatDokter"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Action</h6>
-                        <a class="collapse-item" href="{{ route('obat.index') }}">Daftar Obat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseObatDokter"
+                        aria-expanded="true" aria-controls="collapseObatDokter">
+                        <i class="fas fa-tablets"></i>
+                        <span>Obat</span>
+                    </a>
+                    <div id="collapseObatDokter" class="collapse" aria-labelledby="headingObatDokter"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header"></h6>
+                            <a class="collapse-item" href="{{ route('obat.index') }}">Daftar Obat</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
             @endif
-
             @if (Auth::user()->role == 'pasien')
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseJanjiPasien"
-                    aria-expanded="true" aria-controls="collapseJanjiPasien">
-                    <i class="fas fa-user-injured"></i> <span>Janji Saya</span>
-                </a>
-                <div id="collapseJanjiPasien" class="collapse" aria-labelledby="headingJanjiPasien"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('pasien.index') }}">Riwayat Berobat</a>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseJanjiPasien"
+                        aria-expanded="true" aria-controls="collapseJanjiPasien">
+                        <i class="fas fa-user-injured"></i> <span>Janji Saya</span>
+                    </a>
+                    <div id="collapseJanjiPasien" class="collapse" aria-labelledby="headingJanjiPasien"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('pasien.index') }}">Riwayat Berobat</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
             @endif
-
             @if (Auth::user()->role == 'admin')
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDokterAdmin"
-                    aria-expanded="true" aria-controls="collapseDokterAdmin">
-                    <i class="fas fa-user-md"></i>
-                    <span>Dokter</span>
-                </a>
-                <div id="collapseDokterAdmin" class="collapse" aria-labelledby="headingDokterAdmin"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Action</h6>
-                        <a class="collapse-item" href="{{ route('admin-dokter.index') }}">Daftar Dokter</a>
-                        <a class="collapse-item" href="{{ route('admin-dokter.create') }}">Tambah Dokter</a>
-                        <a class="collapse-item" href="{{ route('admin-dokter.jadwal') }}">Kelola Jadwal Dokter</a>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDokterAdmin"
+                        aria-expanded="true" aria-controls="collapseDokterAdmin">
+                        <i class="fas fa-user-md"></i>
+                        <span>Dokter</span>
+                    </a>
+                    <div id="collapseDokterAdmin" class="collapse" aria-labelledby="headingDokterAdmin"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header"></h6>
+                            <a class="collapse-item" href="{{ route('admin-dokter.index') }}">Daftar Dokter</a>
+                            <a class="collapse-item" href="{{ route('admin-dokter.create') }}">Tambah Dokter</a>
+                            <a class="collapse-item" href="{{ route('admin-jadwal.index') }}">Kelola Jadwal Dokter</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePasienAdmin"
-                    aria-expanded="true" aria-controls="collapsePasienAdmin">
-                    <i class="fas fa-user-injured"></i>
-                    <span>Pasien</span>
-                </a>
-                <div id="collapsePasienAdmin" class="collapse" aria-labelledby="headingPasienAdmin"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Action</h6>
-                        <a class="collapse-item" href="{{ route('dokter.index') }}">Daftar Pasien</a>
-                        <a class="collapse-item" href="{{ route('dokter.create') }}">Tambah Pasien</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePasienAdmin"
+                        aria-expanded="true" aria-controls="collapsePasienAdmin">
+                        <i class="fas fa-user-injured"></i>
+                        <span>Pasien</span>
+                    </a>
+                    <div id="collapsePasienAdmin" class="collapse" aria-labelledby="headingPasienAdmin"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header"></h6>
+                            <a class="collapse-item" href="{{ route('dokter.index') }}">Daftar Pasien</a>
+                            <a class="collapse-item" href="{{ route('dokter.create') }}">Tambah Pasien</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUserAdmin"
-                    aria-expanded="true" aria-controls="collapseUserAdmin">
-                    <i class="fas fa-users"></i>
-                    <span>User</span>
-                </a>
-                <div id="collapseUserAdmin" class="collapse" aria-labelledby="headingUserAdmin"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Action</h6>
-                        <a class="collapse-item" href="{{ route('admin.index') }}">Daftar User</a>
-                        <a class="collapse-item" href="{{ route('admin.create') }}">Tambah User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUserAdmin"
+                        aria-expanded="true" aria-controls="collapseUserAdmin">
+                        <i class="fas fa-users"></i>
+                        <span>User</span>
+                    </a>
+                    <div id="collapseUserAdmin" class="collapse" aria-labelledby="headingUserAdmin"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header"></h6>
+                            <a class="collapse-item" href="{{ route('admin.index') }}">Daftar User</a>
+                            <a class="collapse-item" href="{{ route('admin.create') }}">Tambah User</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseObatAdmin"
-                    aria-expanded="true" aria-controls="collapseObatAdmin">
-                    <i class="fas fa-tablets"></i>
-                    <span>Obat</span>
-                </a>
-                <div id="collapseObatAdmin" class="collapse" aria-labelledby="headingObatAdmin"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Actions</h6>
-                        <a class="collapse-item" href="{{ route('obat.index') }}">Daftar Obat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseObatAdmin"
+                        aria-expanded="true" aria-controls="collapseObatAdmin">
+                        <i class="fas fa-tablets"></i>
+                        <span>Obat</span>
+                    </a>
+                    <div id="collapseObatAdmin" class="collapse" aria-labelledby="headingObatAdmin"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header"></h6>
+                            <a class="collapse-item" href="{{ route('obat.index') }}">Daftar Obat</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
             @endif
-
             @if (Auth::user()->role == 'apoteker')
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePasienApoteker"
-                    aria-expanded="true" aria-controls="collapsePasienApoteker">
-                    <i class="fas fa-user-injured"></i>
-                    <span>Pasien</span>
-                </a>
-                <div id="collapsePasienApoteker" class="collapse" aria-labelledby="headingPasienApoteker"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Action</h6>
-                        <a class="collapse-item" href="{{ route('dokter.index') }}">Daftar Pasien</a>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePasienApoteker"
+                        aria-expanded="true" aria-controls="collapsePasienApoteker">
+                        <i class="fas fa-user-injured"></i>
+                        <span>Pasien</span>
+                    </a>
+                    <div id="collapsePasienApoteker" class="collapse" aria-labelledby="headingPasienApoteker"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header"></h6>
+                            <a class="collapse-item" href="{{ route('dokter.index') }}">Daftar Pasien</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseObatApoteker"
-                    aria-expanded="true" aria-controls="collapseObatApoteker">
-                    <i class="fas fa-tablets"></i>
-                    <span>Obat</span>
-                </a>
-                <div id="collapseObatApoteker" class="collapse" aria-labelledby="headingObatApoteker"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Actions</h6>
-                        <a class="collapse-item" href="{{ route('obat.index') }}">Daftar Obat</a>
-                        <a class="collapse-item" href="{{ route('obat.create') }}">Tambah Obat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseObatApoteker"
+                        aria-expanded="true" aria-controls="collapseObatApoteker">
+                        <i class="fas fa-tablets"></i>
+                        <span>Obat</span>
+                    </a>
+                    <div id="collapseObatApoteker" class="collapse" aria-labelledby="headingObatApoteker"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header"></h6>
+                            <a class="collapse-item" href="{{ route('obat.index') }}">Daftar Obat</a>
+                            <a class="collapse-item" href="{{ route('obat.create') }}">Tambah Obat</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
             @endif
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content" class="d-flex flex-column">
                 @yield('content')
                 <!-- Footer -->
                 <footer class="sticky-footer bg-white">
-                  <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                      <span>Klinik Gloria Putra Abadi &copy; 2024</span>
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Klinik Gloria Putra Abadi &copy; 2024</span>
+                        </div>
                     </div>
-                  </div>
                 </footer>
                 <!-- End of Footer -->
-              </div>
-            <!-- End of Footer -->
+            </div>
+            <!-- End of Main Content -->
         </div>
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

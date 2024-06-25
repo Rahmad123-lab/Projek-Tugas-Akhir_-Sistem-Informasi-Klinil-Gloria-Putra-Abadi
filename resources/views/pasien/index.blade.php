@@ -39,14 +39,22 @@
   <!-- Begin Page Content -->
   <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-3 text-gray-800">Buat Perjanjian dengan Dokter sebelum konsultasi</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1 class="h3 text-gray-800">Buat Perjanjian dengan Dokter sebelum konsultasi</h1>
+      <a href="{{ route('pasien.create') }}" class="btn btn-primary font-weight-bold">
+        + Buat Janji
+      </a>
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="mb-4 d-flex">
+      <a href="{{ route('pasien.index', ['filter' => 'semua']) }}" class="btn btn-primary font-weight-bold mr-2">Semua</a>
+      <a href="{{ route('pasien.index', ['filter' => 'selesai']) }}" class="btn btn-success font-weight-bold mr-2">Selesai</a>
+      <a href="{{ route('pasien.index', ['filter' => 'batal']) }}" class="btn btn-danger font-weight-bold">Batal</a>
+    </div>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <a href="{{ route('pasien.create') }}" class="btn btn-primary font-weight-bold">
-          + Buat Janji
-        </a>
-      </div>
       <div class="card-body">
         @if($pasiens->isEmpty())
           <div class="alert alert-info">
@@ -74,11 +82,11 @@
                     <td>
                           <span>
                             <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-success">
-                              Info
-                            </a>
+                        Info
+                      </a>
                           </span>
-                           </td>
-                     </tr>
+                    </td>
+                  </tr>
                 @endforeach
               </tbody>
             </table>

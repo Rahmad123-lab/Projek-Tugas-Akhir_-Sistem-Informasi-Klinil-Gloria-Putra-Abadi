@@ -40,14 +40,16 @@
             <textarea class="form-control" id="diagnosa_pasien" rows="3" name="diagnosa_pasien">{{ $model->diagnosa_pasien }}</textarea>
           </div>
           <div class="form-group">
-            <label for="resep_obat">Obat</label>
-            <select class="form-control" id="resep_obat" name="resep_obat">
+            <label for="resep_obat"> Resep Obat</label>
+            <textarea class="form-control" id="resep_obat" rows="3" name="resep_obat">{{ $model->resep_obat }}</textarea>
+            {{-- <select class="form-control" id="resep_obat" name="resep_obat">
+                <option>Buat resep </option>
                 @foreach ($obats as $obat)
                     <option value="{{ $obat->nama_obat }}" {{ $model->resep_obat == $obat->nama_obat ? 'selected' : '' }}>{{ $obat->nama_obat }}</option>
                 @endforeach
-            </select>
+            </select> --}}
         </div>
-          <button type="submit" class="btn btn-info">Update</button>
+          <button type="submit" class="btn btn-info">Simpan </button>
         </form>
       </div>
     </div>

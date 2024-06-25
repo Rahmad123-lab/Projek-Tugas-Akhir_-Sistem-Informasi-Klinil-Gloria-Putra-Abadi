@@ -11,7 +11,7 @@ class Pasien extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_pasien', 'alamat_pasien', 'nik', 'tgl_datang', 'keluhan_pasien', 'diagnosa_pasien', 'dokter_id', 'resep_obat'
+        'nama_pasien', 'alamat_pasien', 'nik', 'tgl_datang', 'keluhan_pasien', 'diagnosa_pasien', 'dokter_id', 'resep_obat', 'status'
     ];
 
     public function dokter()

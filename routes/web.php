@@ -6,7 +6,7 @@ use App\Http\Controllers\Dokter\DokterController;
 use App\Http\Controllers\Obat\ObatController;
 use App\Http\Controllers\Pasien\PasienController;
 use App\Http\Controllers\Perjanjian\PerjanjianController;
-use App\Http\Controllers\JadwalDokterNewController;
+use App\Http\Controllers\JadwalDoktersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +28,7 @@ Route::get('/tentang', function() {
     return view('frontend.tentang');
 });
 
-Route::get('/Kontak', function() {
+Route::get('/kontak', function() {
     return view('frontend.contact');
 });
 
@@ -59,23 +59,30 @@ Route::resource('pasien', PasienController::class)->middleware('checkRole:dokter
 Route::resource('admin', AdminController::class)->middleware('checkRole:admin,apoteker');
 Route::resource('perjanjian', PerjanjianController::class)->middleware('checkRole:pasien,admin,apoteker');
 Route::resource('obat', ObatController::class)->middleware('checkRole:dokter,admin,apoteker');
-Route::resource('jadwal-dokter', JadwalDokterController::class);
 
-// Specific Routes
-Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
-Route::get('/admin-dokter', [AdminDokterController::class, 'index'])->name('admin-dokter.index');
-Route::get('/admin-dokter/jadwal', [DokterController::class, 'jadwal'])->name('admin-dokter.jadwal');
-Route::resource('admin-dokter', AdminDokterController::class)->middleware('checkRole:admin,apoteker');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('admin-jadwal', JadwalDoktersController::class);
+    // Route for showing the form to create a new schedule
+    Route::get('/admin-jadwal/create', [JadwalDoktersController::class, 'create'])->name('admin.jadwal.create');
 
-// Route::prefix('admin-dokter')->group(function () {
-//     Route::get('jadwal', [DokterJadwalController::class, 'index'])->name('admin-dokter.jadwal');
-//     Route::post('jadwal', [DokterJadwalController::class, 'store'])->name('jadwal-dokter.store');
-//     Route::get('jadwal/{id}/edit', [DokterJadwalController::class, 'edit'])->name('jadwal-dokter.edit');
-//     Route::put('jadwal/{id}', [DokterJadwalController::class, 'update'])->name('jadwal-dokter.update');
-//     Route::delete('jadwal/{id}', [DokterJadwalController::class, 'destroy'])->name('jadwal-dokter.destroy');
-// });
-// Additional Store Routes
-Route::post('/admin-dokter/store', [AdminDokterController::class, 'store'])->name('admin-dokter.store');
-Route::post('/dokter', [DokterController::class, 'store'])->name('admin.dokter.store');
-Route::post('/perjanjian', [PerjanjianController::class, 'store'])->name('perjanjian.store');
-Route::get('/generate-pdf/{pasien}', [PasienController::class, 'generatePDF'])->name('generatePDF')->middleware('checkRole:dokter,admin,apoteker');
+    // Route for storing a new schedule
+    Route::post('/admin-jadwal', [JadwalDoktersController::class, 'store'])->name('admin.jadwal.store');
+
+    // Route for editing a schedule
+    Route::get('/admin-jadwal/{id}/edit', [JadwalDoktersController::class, 'edit'])->name('admin.jadwal.edit');
+
+    // Route for updating a schedule
+    Route::put('/admin-jadwal/{id}', [JadwalDoktersController::class, 'update'])->name('admin.jadwal.update');
+
+    // Specific Routes
+    Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
+    Route::get('/admin-dokter', [AdminDokterController::class, 'index'])->name('admin-dokter.index');
+    Route::resource('admin-dokter', AdminDokterController::class)->middleware('checkRole:admin,apoteker');
+
+    // Additional Store Routes
+    Route::get('/pasien/semua', [PasienController::class, 'showAll'])->name('pasien.all');
+    Route::post('/admin-dokter/store', [AdminDokterController::class, 'store'])->name('admin-dokter.store');
+    Route::post('/dokter', [DokterController::class, 'store'])->name('admin.dokter.store');
+    Route::post('/perjanjian', [PerjanjianController::class, 'store'])->name('perjanjian.store');
+    Route::get('/generate-pdf/{pasien}', [PasienController::class, 'generatePDF'])->name('generatePDF')->middleware('checkRole:dokter,admin,apoteker');
+});

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJadwalDoktersTable extends Migration
+class JadwalDokters extends Migration
 {
     /**
      * Run the migrations.
@@ -16,9 +16,10 @@ class CreateJadwalDoktersTable extends Migration
         Schema::create('jadwal_dokters', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dokter_id');
+            $table->string('nama_dokter');
+            $table->string('spesialisasi');
             $table->string('hari');
-            $table->time('jam_mulai');
-            $table->time('jam_selesai');
+            $table->string('jam_praktek');
             $table->timestamps();
 
             // Foreign key constraint

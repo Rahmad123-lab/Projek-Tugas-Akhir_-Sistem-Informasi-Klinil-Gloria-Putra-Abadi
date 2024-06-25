@@ -87,7 +87,7 @@
                     <li><a href="../jadwaldokter">Jadwal Dokter</a></li>
                     <li class="dropdown"><a href="../layanan">Layanan</a></li>
                     <li class="active"><a href="../tentang">Tentang</a></li>
-                    <li><a href="../Kontak">Kontak</a></li>
+                    <li><a href="../kontak">Kontak</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../auth/login" class="btn btn-main">Login</a></li>

@@ -14,25 +14,43 @@ class PerjanjianController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
         $dokter = $user->dokter;
+        $filter = $request->query('filter');
 
         if ($user->role === 'admin') {
-            $perjanjians = Perjanjian::all();
+            if ($filter == 'selesai') {
+                $perjanjians = Perjanjian::where('status', 'selesai')->get();
+            } elseif ($filter == 'batal') {
+                $perjanjians = Perjanjian::where('status', 'batal')->get();
+            } else {
+                $perjanjians = Perjanjian::all();
+            }
         } elseif ($dokter) {
-            $perjanjians = Perjanjian::where('dokter_id', $dokter->id)->get();
+            if ($filter == 'selesai') {
+                $perjanjians = Perjanjian::where('dokter_id', $dokter->id)->where('status', 'selesai')->get();
+            } elseif ($filter == 'batal') {
+                $perjanjians = Perjanjian::where('dokter_id', $dokter->id)->where('status', 'batal')->get();
+            } else {
+                $perjanjians = Perjanjian::where('dokter_id', $dokter->id)->get();
+            }
         } else {
-            $perjanjians = Perjanjian::where('pasien_id', $user->id)->get(); // Asumsi pasien bisa melihat perjanjiannya sendiri
+            if ($filter == 'selesai') {
+                $perjanjians = Perjanjian::where('pasien_id', $user->id)->where('status', 'selesai')->get();
+            } elseif ($filter == 'batal') {
+                $perjanjians = Perjanjian::where('pasien_id', $user->id)->where('status', 'batal')->get();
+            } else {
+                $perjanjians = Perjanjian::where('pasien_id', $user->id)->get();
+            }
         }
 
         return view('pasien.index', compact('perjanjians'));
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -41,18 +59,19 @@ class PerjanjianController extends Controller
      */
     public function create()
     {
-        // Logika untuk menampilkan form pembuatan perjanjian
+        // Logic to show the form for creating appointments
+        return view('perjanjian.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'umur' => 'required|integer',
             'nik' => 'required|string|max:255',
@@ -64,19 +83,19 @@ class PerjanjianController extends Controller
             'waktu_perjanjian' => 'required|string',
         ]);
 
-        $dokter = Dokter::find($request->nama_dokter);
+        $dokter = Dokter::findOrFail($request->nama_dokter);
 
         $perjanjian = new Perjanjian([
-            'nama_pasien' => $request->nama,
-            'pasien_id' => $request->pasien_id,
+            'nama_pasien' => $validatedData['nama'],
+            'pasien_id' => auth()->id(),
             'dokter_id' => $request->nama_dokter,
             'nama_dokter' => $dokter->nama_dokter,
             'spesialisasi_dokter' => $dokter->spesialisasi_dokter,
-            'waktu_perjanjian' => $request->waktu_perjanjian,
-            'umur_pasien' => $request->umur,
-            'alamat_pasien' => $request->alamat,
-            'tanggal_lahir_pasien' => $request->tanggal_lahir,
-            'jenis_kelamin_pasien' => $request->jenis_kelamin,
+            'waktu_perjanjian' => $validatedData['waktu_perjanjian'],
+            'umur_pasien' => $validatedData['umur'],
+            'alamat_pasien' => $validatedData['alamat'],
+            'tanggal_lahir_pasien' => $validatedData['tanggal_lahir'],
+            'jenis_kelamin_pasien' => $validatedData['jenis_kelamin'],
         ]);
 
         $perjanjian->save();
@@ -87,13 +106,14 @@ class PerjanjianController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Perjanjian  $perjanjian
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $perjanjian = Perjanjian::findOrFail($id);
-        $obat = Obat::find($perjanjian->resep_obat); // Pastikan 'resep_obat' adalah kolom yang menyimpan ID obat
+        // Assuming 'resep_obat' is an array field in your database for prescription IDs
+        $obat = Obat::whereIn('id', $perjanjian->resep_obat)->get();
 
         return view('pasien.show', compact('perjanjian', 'obat'));
     }
@@ -101,33 +121,28 @@ class PerjanjianController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        // Ambil data perjanjian berdasarkan id
         $perjanjian = Perjanjian::findOrFail($id);
 
-        // Kirim data perjanjian ke tampilan untuk diedit
-        return view('admin-pasien.edit', compact('perjanjian'));
+        return view('perjanjian.edit', compact('perjanjian'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Perjanjian  $perjanjian
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Perjanjian $perjanjian
      * @return \Illuminate\Http\Response
      */
     public function update(PerjanjianRequest $request, Perjanjian $perjanjian)
     {
-        // Validasi data yang diterima melalui objek Request
         $validatedData = $request->validated();
 
-        // Update data perjanjian
         $perjanjian->update($validatedData);
-        $perjanjian->keluhan = $request->keluhan;
 
         return redirect()->route('pasien.index')->with('success', 'Perjanjian berhasil diperbarui.');
     }
@@ -135,14 +150,13 @@ class PerjanjianController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Perjanjian  $perjanjian
+     * @param \App\Models\Perjanjian $perjanjian
      * @return \Illuminate\Http\Response
      */
     public function destroy(Perjanjian $perjanjian)
     {
-        // Hapus perjanjian dari database
-        $perjanjian->delete();
+        $perjanjian->update(['status' => 'batal']);
 
-        return redirect()->route('pasien.index')->with('success', 'Perjanjian berhasil dihapus.');
+        return redirect()->route('pasien.index')->with('success', 'Perjanjian berhasil dibatalkan.');
     }
 }

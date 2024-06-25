@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dokter;
 use App\Models\JadwalDokterNew;
+use App\Models\Perjanjian;
 
 class AdminDokterController extends Controller
 {
@@ -40,6 +41,13 @@ class AdminDokterController extends Controller
         ]);
 
         return redirect()->route('admin-dokter.index')->with('success', 'Dokter berhasil ditambahkan.');
+    }
+    public function show($id)
+    {
+        $dokter = Dokter::findOrFail($id);
+        return view('admin.dokter.show', compact('dokter'));
+        $perjanjians = Perjanjian::findOrFail($id);
+        return view('');
     }
 
     public function edit($id)

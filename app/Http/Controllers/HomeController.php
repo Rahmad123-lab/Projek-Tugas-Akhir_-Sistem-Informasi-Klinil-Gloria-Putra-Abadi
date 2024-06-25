@@ -34,19 +34,22 @@ class HomeController extends Controller
 
     $user = Auth::user();
     if ($user->role == 'dokter') {
-        $perjanjian = Perjanjian::where('nama_dokter', $user->name)->get();
+        $perjanjians = Perjanjian::where('nama_dokter', $user->name)->get();
     } else {
-        $perjanjian = Perjanjian::all();
+        $perjanjians = Perjanjian::all();
     }
 
     $data = [
       'pasien' => $pasien,
       'dokter' => $dokter,
       'obat' => $obat,
-      'perjanjians' => $perjanjian
+      'perjanjians' => $perjanjians
     ];
-
-    return view('home', $data);
+    if ($user->role == 'pasien') {
+        return view('home_pasien', $data);
+    } else {
+        return view('home', $data);
+    }
 }
 
 }

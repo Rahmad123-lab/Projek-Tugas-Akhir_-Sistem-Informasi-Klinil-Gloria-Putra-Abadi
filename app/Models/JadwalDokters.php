@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JadwalDokterNew extends Model
+class JadwalDokters extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'dokter_id',
-        'hari',
-        'jam_mulai',
-        'jam_selesai',
+        'nama_dokter',
+        'spesialisasi',
+        'hari_praktek',
+        'jam_praktek',
     ];
 
     public function dokter()

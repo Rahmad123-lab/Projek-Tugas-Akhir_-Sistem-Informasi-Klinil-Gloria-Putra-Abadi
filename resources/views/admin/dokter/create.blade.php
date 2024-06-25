@@ -82,16 +82,6 @@
             </span>
             @enderror
           </div>
-          <div class="form-group">
-            <label for="jadwal_dokter">Jadwal Dokter</label>
-            <input type="text" class="form-control @error('jadwal_dokter') is-invalid @enderror" id="jadwal_dokter"
-              name="jadwal_dokter" placeholder="Jadwal Dokter" value="{{ old('jadwal_dokter') }}">
-            @error('jadwal_dokter')
-            <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-          </div>
           <button type="submit" class="btn btn-info">Tambah</button>
         </form>
       </div>

@@ -1,71 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jadwal Dokter | Klinik GPA</title>
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="plugins/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
-  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
-  <link href="css/style.css" rel="stylesheet">
-  <!--Favicon-->
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-</head>
-<body>
-  <div class="page-wrapper">
-    <!-- Main Header -->
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header col-md-2 col-sm-2 col-xs-12">
-          <figure class="logo">
-            <a href="../">
-              <img src="images/logoklinik.png" alt="" width="80">
-            </a>
-          </figure>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="../">Beranda</a>
-                </li>
-                <!-- Existing code -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jadwal-dokter | Klinik GPA</title>
 
-                <li class="dropdown">
-                    <!-- ... (unchanged) -->
-                </li>
-                <li>
-                    <a href= "../jadwaldokter">Jadwal Dokter</a>
-                </li>
-                <!-- Existing code -->
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="plugins/slick/slick.css">
+        <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+        <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
+        <link href="css/style.css" rel="stylesheet">
 
-                <li class="dropdown">
-                 <a href="../layanan" >Layanan</a>
-                         <span class="caret"></span>
-                   </a>
-                <li>
-                    <a href="../tentang">Tentang</a>
-                </li>
-                <li>
-                    <a href="../Kontak">Kontak</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="../auth/login" class="btn btn-main">Login</a>
-                </li>
-            </ul>
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    </head>
 
-            </div>
-      </div>
-    </nav>
+    <body>
+        <div class="page-wrapper">
+
+            <!-- Main Header -->
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header col-md-2 col-sm-2 col-xs-12">
+                        <figure class="logo">
+                            <a href="../">
+                                <img src="images/logoklinik.png" alt="Logo Klinik" width="80">
+                            </a>
+                        </figure>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Navbar links -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="../">Beranda</a></li>
+                            <li><a href="../jadwaldokter">Jadwal Dokter</a></li>
+                            <li><a href="../layanan">Layanan</a></li>
+                            <li><a href="../tentang">Tentang</a></li>
+                            <li><a href="../kontak">Kontak</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../auth/login" class="btn btn-main">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
     <!-- End Main Header -->
 
     <!-- Page Content -->
@@ -84,18 +71,27 @@
             <div class="content text-center">
               {{-- <h2 class="mb-5">Jadwal Praktek Dokter</h2> --}}
               <p>Berikut adalah jadwal praktek dokter di Klinik Gloria Putra Abadi:</p>
-              <table class="table table-bordered table-hover">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                  <tr>
-                    <th>Nama Dokter</th>
-                    <th>Spesialis</th>
-                    <th>Hari</th>
-                    <th>Jam Praktek</th>
-                  </tr>
+                    <tr>
+                        <th>Nama Dokter</th>
+                        <th>Spesialisasi</th>
+                        <th>Hari</th>
+                        <th>Jam Praktek</th>
+                    </tr>
                 </thead>
                 <tbody>
+                    {{-- @foreach ($jadwalDokter as $jadwal)
+                        <tr>
+                            <td>{{ $jadwal->nama_dokter }}</td>
+                            <td>{{ $jadwal->spesialisasi }}</td>
+                            <td>{{ $jadwal->hari }}</td>
+                            <td>{{ $jadwal->jam_praktek }}</td>
+                        </tr>
+                    @endforeach --}}
                 </tbody>
-              </table>
+
+            </table>
             </div>
           </div>
         </div>
