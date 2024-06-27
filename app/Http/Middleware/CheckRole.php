@@ -32,6 +32,6 @@ class CheckRole
         }
 
         // Jika peran pengguna tidak sesuai, redirect ke halaman yang sesuai
-        return redirect('/');
+        return redirect('/')->with('error', 'You do not have access to this section');
     }
 }

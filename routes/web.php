@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDokterController;
 use App\Http\Controllers\Dokter\DokterController;
@@ -67,16 +68,31 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function () {
     Route::post('/admin-jadwal', [JadwalDoktersController::class, 'store'])->name('admin.jadwal.store');
     Route::get('/admin-jadwal/{id}/edit', [JadwalDoktersController::class, 'edit'])->name('admin.jadwal.edit');
     Route::put('/admin-jadwal/{id}', [JadwalDoktersController::class, 'update'])->name('admin.jadwal.update');
-    Route::delete('/admin-jadwal/{id}', 'JadwalDoktersController@destroy')->name('admin.jadwal.destroy');
+    Route::delete('/admin-jadwal/{id}', [JadwalDoktersController::class, 'destroy'])->name('admin.jadwal.destroy');
+});
 
-
-    Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
+Route::middleware(['auth', 'checkRole:admin,apoteker'])->group(function () {
+    Route::resource('admin-dokter', AdminDokterController::class);
     Route::get('/admin-dokter', [AdminDokterController::class, 'index'])->name('admin-dokter.index');
-    Route::resource('admin-dokter', AdminDokterController::class)->middleware('checkRole:admin,apoteker');
-
-    Route::get('/pasien/semua', [PasienController::class, 'showAll'])->name('pasien.all');
     Route::post('/admin-dokter/store', [AdminDokterController::class, 'store'])->name('admin-dokter.store');
+});
+
+Route::middleware(['auth', 'checkRole:admin,apoteker'])->group(function () {
+    Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
+});
+
+Route::middleware(['auth', 'checkRole:admin,dokter'])->group(function () {
     Route::post('/dokter', [DokterController::class, 'store'])->name('admin.dokter.store');
+});
+
+Route::middleware(['auth', 'checkRole:admin,pasien,apoteker'])->group(function () {
     Route::post('/perjanjian', [PerjanjianController::class, 'store'])->name('perjanjian.store');
-    Route::get('/generate-pdf/{pasien}', [PasienController::class, 'generatePDF'])->name('generatePDF')->middleware('checkRole:dokter,admin,apoteker');
+});
+
+Route::middleware(['auth', 'checkRole:admin,apoteker,dokter'])->group(function () {
+    Route::get('/generate-pdf/{pasien}', [PasienController::class, 'generatePDF'])->name('generatePDF');
+});
+
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+    Route::get('/pasien/semua', [PasienController::class, 'showAll'])->name('pasien.all');
 });

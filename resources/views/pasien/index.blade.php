@@ -46,12 +46,14 @@
       </a>
     </div>
 
-    <!-- Buttons Section -->
-    <div class="mb-4 d-flex">
-      <a href="{{ route('pasien.index', ['filter' => 'semua']) }}" class="btn btn-primary font-weight-bold mr-2">Semua</a>
-      <a href="{{ route('pasien.index', ['filter' => 'selesai']) }}" class="btn btn-success font-weight-bold mr-2">Selesai</a>
-      <a href="{{ route('pasien.index', ['filter' => 'batal']) }}" class="btn btn-danger font-weight-bold">Batal</a>
-    </div>
+    <!-- Conditionally Render Filter Buttons Section -->
+    @if(!$pasiens->isEmpty())
+      <div class="mb-4 d-flex">
+        <a href="{{ route('pasien.index', ['filter' => 'semua']) }}" class="btn btn-primary font-weight-bold mr-2">Semua</a>
+        <a href="{{ route('pasien.index', ['filter' => 'selesai']) }}" class="btn btn-success font-weight-bold mr-2">Selesai</a>
+        <a href="{{ route('pasien.index', ['filter' => 'batal']) }}" class="btn btn-danger font-weight-bold">Batal</a>
+      </div>
+    @endif
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -80,11 +82,9 @@
                     <td>{{ $pasien->dokter->spesialisasi_dokter }}</td>
                     <td>{{ $pasien->waktu_perjanjian }}</td>
                     <td>
-                          <span>
-                            <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-success">
-                        Info
-                      </a>
-                          </span>
+                      <span>
+                        <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-success">Info</a>
+                      </span>
                     </td>
                   </tr>
                 @endforeach
