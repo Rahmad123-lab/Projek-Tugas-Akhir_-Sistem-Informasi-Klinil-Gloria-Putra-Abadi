@@ -62,41 +62,35 @@
       </head>
       <body>
         <div class="page-wrapper">
-          <!-- Main Header -->
-          <nav class="navbar navbar-default">
-              <div class="container">
-                  <!-- Brand and toggle get grouped for better mobile display -->
-                  <div class="navbar-header col-md-2 col-sm-2 col-xs-12">
-                      <figure class="logo">
-                          <a href="../">
-                              <img src="images/logoklinik.png" alt="" width="80">
-                          </a>
-                      </figure>
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                          <span class="sr-only">Toggle navigation</span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                      </button>
-                  </div>
-                  <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                      <ul class="nav navbar-nav">
-                          <li><a href="../">Beranda</a></li>
-                          <li><a href="../jadwaldokter">Jadwal Dokter</a></li>
-                          <li><a href="../layanan">Layanan</a></li>
-                          <li><a href="../tentang">Tentang</a></li>
-                          <li><a href="../kontak">Kontak</a></li>
-                      </ul>
-                      <ul class="nav navbar-nav navbar-right">
-                          <li><a href="../auth/login" class="btn btn-main">Login</a></li>
-                      </ul>
-                  </div>
-                  <!-- /.navbar-collapse -->
-              </div>
-              <!-- /.container-fluid -->
-          </nav>
+            <!-- Main Header -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="../">
+                            <img src="images/logoklinik.png" alt="Klinik Logo" width="80">
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="../">Beranda</a></li>
+                            <li><a href="../jadwaldokter">Jadwal Dokter</a></li>
+                            <li><a href="../layanan">Layanan</a></li>
+                            <li><a href="../tentang">Tentang</a></li>
+                            <li><a href="../kontak">Kontak</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../auth/login" class="btn btn-main">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
 
 <!--End Main Header -->
 

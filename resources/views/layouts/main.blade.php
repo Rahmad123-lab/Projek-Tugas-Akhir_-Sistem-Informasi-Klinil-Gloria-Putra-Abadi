@@ -112,8 +112,8 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header"></h6>
-                            <a class="collapse-item" href="{{ route('dokter.index') }}">Daftar Pasien</a>
-                            <a class="collapse-item" href="{{ route('dokter.create') }}">Tambah Pasien</a>
+                            <a class="collapse-item" href="{{ route('admin-perjanjian.index') }}">Daftar Pasien</a>
+                            <a class="collapse-item" href="{{ route('admin-perjanjian.create') }}">Tambah Pasien</a>
                         </div>
                     </div>
                 </li>

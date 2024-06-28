@@ -133,7 +133,13 @@
           @if ((Auth::user()->role == 'dokter' && $perjanjians->count()) || (Auth::user()->role == 'admin' || Auth::user()->role == 'apoteker'))
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Perjanjian dengan Pasien</h6>
+            <h6 class="m-0 font-weight-bold text-primary">
+              @if (Auth::user()->role == 'dokter')
+                Perjanjian dengan Pasien
+              @else
+                Daftar Pasien
+              @endif
+            </h6>
           </div>
           <!-- Card Body -->
           <div class="card-body">

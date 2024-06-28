@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDokterController;
+use App\Http\Controllers\Admin\AdminPerjanjianController;
 use App\Http\Controllers\Dokter\DokterController;
 use App\Http\Controllers\Obat\ObatController;
 use App\Http\Controllers\Pasien\PasienController;
@@ -69,6 +70,12 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function () {
     Route::get('/admin-jadwal/{id}/edit', [JadwalDoktersController::class, 'edit'])->name('admin.jadwal.edit');
     Route::put('/admin-jadwal/{id}', [JadwalDoktersController::class, 'update'])->name('admin.jadwal.update');
     Route::delete('/admin-jadwal/{id}', [JadwalDoktersController::class, 'destroy'])->name('admin.jadwal.destroy');
+});
+// route admin perjanjian
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+    Route::get('/admin-perjanjian', [AdminPerjanjianController::class, 'index'])->name('admin-perjanjian.index');
+    Route::get('/admin-perjanjian/create', [AdminPerjanjianController::class, 'create'])->name('admin-perjanjian.create');
+    Route::get('/admin-perjanjian/show', [AdminPerjanjianController::class, 'show'])->name('admin-perjanjian.show');
 });
 
 Route::middleware(['auth', 'checkRole:admin,apoteker'])->group(function () {
